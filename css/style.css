@@ -379,17 +379,150 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Subtle Sci-Fi Grid Overlay */
-body::before {
+/* Modal Segmented Navigation Tabs */
+.hud-settings-tabs {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 1rem;
+}
+
+.hud-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1.1rem;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  transition: all var(--transition-fast);
+  cursor: pointer;
+}
+
+.hud-tab-btn:hover {
+  color: #fff;
+  border-color: var(--border-medium);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.hud-tab-btn.active {
+  color: #000;
+  background: var(--neon-cyan);
+  border-color: var(--neon-cyan);
+  font-weight: 700;
+  box-shadow: 0 0 15px var(--neon-cyan-glow);
+}
+
+/* Background Option Cards */
+.bg-icon-badge {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-medium);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--neon-cyan);
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.hud-tab-pane {
+  display: none;
+}
+
+.hud-tab-pane.active {
+  display: block;
+}
+
+/* ==========================================================================
+   5 DISTINCT GAMING BACKGROUND EFFECTS
+   ========================================================================== */
+
+/* 1. Cyber Grid (Default Sci-Fi) */
+body::before,
+[data-bg="cyber-grid"] body::before,
+body[data-bg="cyber-grid"]::before {
   content: '';
   position: fixed;
   inset: 0;
   background-image: 
-    linear-gradient(to right, rgba(0, 240, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 240, 255, 0.02) 1px, transparent 1px);
-  background-size: 60px 60px;
+    linear-gradient(to right, var(--border-medium) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--border-medium) 1px, transparent 1px);
+  background-size: 55px 55px;
+  opacity: 0.22;
   pointer-events: none;
   z-index: 0;
+  transition: opacity 0.4s ease;
+}
+
+/* 2. Deep Space Nebula & Starlight */
+[data-bg="deep-space"] body::before,
+body[data-bg="deep-space"]::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: 
+    radial-gradient(circle at 18% 25%, var(--neon-cyan-glow) 0%, transparent 45%),
+    radial-gradient(circle at 82% 70%, var(--neon-purple-glow) 0%, transparent 50%),
+    radial-gradient(circle at 50% 85%, rgba(0, 212, 255, 0.18) 0%, transparent 42%);
+  filter: blur(45px);
+  opacity: 0.65;
+  background-size: 100% 100%;
+}
+
+/* 3. Hexagonal Shield Lattice */
+[data-bg="hex-shield"] body::before,
+body[data-bg="hex-shield"]::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: 
+    radial-gradient(circle, var(--border-medium) 2px, transparent 2px),
+    radial-gradient(circle, var(--border-medium) 2px, transparent 2px);
+  background-size: 36px 36px;
+  background-position: 0 0, 18px 18px;
+  opacity: 0.45;
+  filter: none;
+}
+
+/* 4. Retro Synthwave Scanlines */
+[data-bg="synth-scanlines"] body::before,
+body[data-bg="synth-scanlines"]::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: 
+    repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) 2px, transparent 2px, transparent 4px),
+    linear-gradient(to bottom, transparent 60%, var(--neon-cyan-glow) 100%),
+    linear-gradient(to right, var(--border-subtle) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 70px 70px;
+  opacity: 0.55;
+  filter: none;
+}
+
+/* 5. Minimal Carbon Fiber Weave */
+[data-bg="carbon-matrix"] body::before,
+body[data-bg="carbon-matrix"]::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: 
+    radial-gradient(black 15%, transparent 16%) 0 0,
+    radial-gradient(black 15%, transparent 16%) 8px 8px,
+    radial-gradient(rgba(255,255,255,.06) 15%, transparent 20%) 0 1px,
+    radial-gradient(rgba(255,255,255,.06) 15%, transparent 20%) 8px 9px;
+  background-color: var(--bg-primary);
+  background-size: 16px 16px;
+  opacity: 0.6;
+  filter: none;
 }
 
 /* Interactive Particle Canvas Container */

@@ -27,13 +27,31 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ==========================================================================
-   THEME SETTINGS CONTROLLER (5 DARK THEMES)
+   THEME & BACKGROUND HUD SETTINGS (5 THEMES & 5 BACKGROUNDS)
    ========================================================================== */
 function initThemeSettings() {
   const themeModal = document.getElementById('theme-modal');
   const themeBtn = document.getElementById('theme-settings-btn');
   const closeBtn = document.getElementById('theme-modal-close');
-  const themeCards = document.querySelectorAll('.theme-option-card');
+  const themeCards = document.querySelectorAll('#theme-options-list .theme-option-card');
+  const bgCards = document.querySelectorAll('.bg-option-card');
+  const tabBtns = document.querySelectorAll('.hud-tab-btn');
+  const tabPanes = {
+    'themes': document.getElementById('pane-themes'),
+    'backgrounds': document.getElementById('pane-backgrounds')
+  };
+
+  // Tab switching logic (Color Themes vs Background Styles)
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tabKey = btn.getAttribute('data-tab');
+      tabBtns.forEach(b => b.classList.toggle('active', b === btn));
+      Object.entries(tabPanes).forEach(([key, pane]) => {
+        if (pane) pane.classList.toggle('active', key === tabKey);
+      });
+      if (window.gameAudio) window.gameAudio.playClick();
+    });
+  });
 
   const THEMES_CONFIG = {
     'cyber-blue': {
@@ -79,12 +97,12 @@ function initThemeSettings() {
     document.documentElement.setAttribute('data-theme', themeKey);
     localStorage.setItem('gamedev_portfolio_theme', themeKey);
 
-    // Update particle canvas
+    // Update particle canvas colors
     if (window.cyberCanvasInstance && typeof window.cyberCanvasInstance.setThemeColors === 'function') {
       window.cyberCanvasInstance.setThemeColors(config.primaryRgb, config.secondaryRgb, config.shadowHex);
     }
 
-    // Update active card indicator
+    // Update active theme card indicator
     themeCards.forEach(card => {
       const isCurrent = card.getAttribute('data-theme-key') === themeKey;
       card.classList.toggle('active', isCurrent);
@@ -97,9 +115,38 @@ function initThemeSettings() {
     }
   }
 
-  // Load saved theme or default
+  function applyBackground(bgKey, playSfx = false) {
+    const validBgs = ['cyber-grid', 'deep-space', 'hex-shield', 'synth-scanlines', 'carbon-matrix'];
+    const activeBg = validBgs.includes(bgKey) ? bgKey : 'cyber-grid';
+
+    document.documentElement.setAttribute('data-bg', activeBg);
+    document.body.setAttribute('data-bg', activeBg);
+    localStorage.setItem('gamedev_portfolio_bg', activeBg);
+
+    // Update particle canvas animation physics for the background mode
+    if (window.cyberCanvasInstance && typeof window.cyberCanvasInstance.setBackgroundMode === 'function') {
+      window.cyberCanvasInstance.setBackgroundMode(activeBg);
+    }
+
+    // Update active background card indicator
+    bgCards.forEach(card => {
+      const isCurrent = card.getAttribute('data-bg-key') === activeBg;
+      card.classList.toggle('active', isCurrent);
+      const tag = card.querySelector('.theme-status-tag');
+      if (tag) tag.textContent = isCurrent ? 'ACTIVE' : 'SELECT';
+    });
+
+    if (playSfx && window.gameAudio) {
+      window.gameAudio.playClick();
+    }
+  }
+
+  // Load saved theme & background or defaults
   const savedTheme = localStorage.getItem('gamedev_portfolio_theme') || 'cyber-blue';
   applyTheme(savedTheme, false);
+
+  const savedBg = localStorage.getItem('gamedev_portfolio_bg') || 'cyber-grid';
+  applyBackground(savedBg, false);
 
   // Open modal
   if (themeBtn && themeModal) {
@@ -137,6 +184,14 @@ function initThemeSettings() {
     card.addEventListener('click', () => {
       const themeKey = card.getAttribute('data-theme-key');
       applyTheme(themeKey, true);
+    });
+  });
+
+  // Attach click listener to each background card
+  bgCards.forEach(card => {
+    card.addEventListener('click', () => {
+      const bgKey = card.getAttribute('data-bg-key');
+      applyBackground(bgKey, true);
     });
   });
 }

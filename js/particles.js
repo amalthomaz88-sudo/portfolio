@@ -18,9 +18,14 @@ class CyberParticleCanvas {
     this.primaryRgb = '29, 114, 254';
     this.secondaryRgb = '0, 212, 255';
     this.shadowColor = '#1d72fe';
+    this.bgMode = 'cyber-grid';
 
     this.init();
     window.cyberCanvasInstance = this;
+  }
+
+  setBackgroundMode(mode) {
+    this.bgMode = mode || 'cyber-grid';
   }
 
   init() {
@@ -120,12 +125,29 @@ class CyberParticleCanvas {
       this.ctx.restore();
     });
 
-    // Update and draw particles
+    // Update and draw particles based on background mode
+    const now = Date.now();
     for (let i = 0; i < this.particles.length; i++) {
       const p = this.particles[i];
 
-      p.x += p.vx;
-      p.y += p.vy;
+      if (this.bgMode === 'synth-scanlines') {
+        // Floating upward sparks / embers
+        p.y -= Math.abs(p.vy) * 1.6 + 0.35;
+        p.x += Math.sin(now * 0.002 + i) * 0.35;
+      } else if (this.bgMode === 'deep-space') {
+        // Gentle 3D deep space drift with twinkling stars
+        p.x += p.vx * 0.45;
+        p.y += p.vy * 0.45;
+        p.baseAlpha = 0.2 + 0.35 * Math.sin(now * 0.0025 + i * 1.5);
+      } else if (this.bgMode === 'carbon-matrix') {
+        // Subtle slow ambient floating embers
+        p.x += p.vx * 0.5;
+        p.y += p.vy * 0.5;
+      } else {
+        // Standard cyber grid & hex shield
+        p.x += p.vx;
+        p.y += p.vy;
+      }
 
       if (p.x < 0) p.x = this.width;
       if (p.x > this.width) p.x = 0;
