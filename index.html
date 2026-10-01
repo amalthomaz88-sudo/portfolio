@@ -56,8 +56,13 @@
         </ul>
       </nav>
 
-      <!-- Utility Actions (Audio SFX Toggle) -->
+      <!-- Utility Actions (Theme Settings & Audio SFX Toggle) -->
       <div class="nav-actions">
+        <button class="theme-toggle-btn" id="theme-settings-btn" title="Customize HUD Theme" aria-label="Theme Settings">
+          <span class="theme-palette-icon"></span>
+          <span id="theme-btn-label">THEME</span>
+        </button>
+
         <button class="sound-toggle-btn" id="sound-toggle" title="Toggle UI sound effects" aria-label="Toggle Sound Effects">
           <span class="sound-indicator"></span>
           <span id="sound-status-text">SFX: ON</span>
@@ -743,6 +748,104 @@
       </div>
     </div>
   </section>
+
+  <!-- ==========================================================================
+       THEME SETTINGS MODAL / HUD CUSTOMIZER
+       ========================================================================== -->
+  <div class="theme-modal-backdrop" id="theme-modal" aria-hidden="true" role="dialog">
+    <div class="theme-modal-window">
+      <div class="theme-modal-header">
+        <h3 class="theme-modal-title">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M12 2a10 10 0 0 0-4 19.18V18a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v3.18A10 10 0 0 0 12 2z"></path>
+            <circle cx="8.5" cy="8.5" r="1.5" fill="currentColor"></circle>
+            <circle cx="15.5" cy="8.5" r="1.5" fill="currentColor"></circle>
+          </svg>
+          HUD THEME CALIBRATION
+        </h3>
+        <button class="modal-close-btn" id="theme-modal-close" style="position: static;" aria-label="Close theme modal">&times;</button>
+      </div>
+      <p class="theme-modal-sub">SELECT FROM 5 CURATED DARK GAMING COLOR PROTOCOLS</p>
+
+      <div class="theme-cards-grid" id="theme-options-list">
+        <!-- 1. Cyber Cyan -->
+        <div class="theme-option-card active" data-theme-key="cyber-cyan">
+          <div class="theme-card-left">
+            <div class="theme-swatches-preview">
+              <span class="theme-swatch-dot primary" style="background: #00f0ff;"></span>
+              <span class="theme-swatch-dot secondary" style="background: #a855f7;"></span>
+            </div>
+            <div class="theme-info-box">
+              <h4>CYBER CYAN</h4>
+              <p>Default Sci-Fi • Neon Cyan & Electric Purple</p>
+            </div>
+          </div>
+          <span class="theme-status-tag">ACTIVE</span>
+        </div>
+
+        <!-- 2. Emerald Matrix -->
+        <div class="theme-option-card" data-theme-key="emerald-matrix">
+          <div class="theme-card-left">
+            <div class="theme-swatches-preview">
+              <span class="theme-swatch-dot primary" style="background: #00ff88;"></span>
+              <span class="theme-swatch-dot secondary" style="background: #10b981;"></span>
+            </div>
+            <div class="theme-info-box">
+              <h4>EMERALD MATRIX</h4>
+              <p>Unreal Engine • Toxic Matrix Green & Bio Emerald</p>
+            </div>
+          </div>
+          <span class="theme-status-tag">SELECT</span>
+        </div>
+
+        <!-- 3. Crimson Fury -->
+        <div class="theme-option-card" data-theme-key="crimson-fury">
+          <div class="theme-card-left">
+            <div class="theme-swatches-preview">
+              <span class="theme-swatch-dot primary" style="background: #ff2a5f;"></span>
+              <span class="theme-swatch-dot secondary" style="background: #ff5500;"></span>
+            </div>
+            <div class="theme-info-box">
+              <h4>CRIMSON FURY</h4>
+              <p>Cyberpunk Red • Sith Magma Core & Blazing Ember</p>
+            </div>
+          </div>
+          <span class="theme-status-tag">SELECT</span>
+        </div>
+
+        <!-- 4. Royal Void -->
+        <div class="theme-option-card" data-theme-key="royal-void">
+          <div class="theme-card-left">
+            <div class="theme-swatches-preview">
+              <span class="theme-swatch-dot primary" style="background: #c042ff;"></span>
+              <span class="theme-swatch-dot secondary" style="background: #00e5ff;"></span>
+            </div>
+            <div class="theme-info-box">
+              <h4>ROYAL VOID</h4>
+              <p>Deep Space Amethyst • Cosmic Violet & Starlight</p>
+            </div>
+          </div>
+          <span class="theme-status-tag">SELECT</span>
+        </div>
+
+        <!-- 5. Solar Amber -->
+        <div class="theme-option-card" data-theme-key="solar-amber">
+          <div class="theme-card-left">
+            <div class="theme-swatches-preview">
+              <span class="theme-swatch-dot primary" style="background: #ffb703;"></span>
+              <span class="theme-swatch-dot secondary" style="background: #fb8500;"></span>
+            </div>
+            <div class="theme-info-box">
+              <h4>SOLAR AMBER</h4>
+              <p>Deus Ex Cyber Gold • High-Voltage Solar & Flame</p>
+            </div>
+          </div>
+          <span class="theme-status-tag">SELECT</span>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- ==========================================================================
        FOOTER

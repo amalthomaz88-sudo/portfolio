@@ -14,7 +14,13 @@ class CyberParticleCanvas {
     this.particleCount = 55;
     this.animationFrameId = null;
 
+    // Theme color presets
+    this.primaryRgb = '0, 240, 255';
+    this.secondaryRgb = '168, 85, 247';
+    this.shadowColor = '#00f0ff';
+
     this.init();
+    window.cyberCanvasInstance = this;
   }
 
   init() {
@@ -51,10 +57,16 @@ class CyberParticleCanvas {
         vx: (Math.random() - 0.5) * 0.6,
         vy: (Math.random() - 0.5) * 0.6,
         radius: Math.random() * 2 + 1,
-        color: Math.random() > 0.4 ? 'rgba(0, 240, 255, ' : 'rgba(168, 85, 247, ',
+        isPrimary: Math.random() > 0.4,
         baseAlpha: Math.random() * 0.4 + 0.2
       });
     }
+  }
+
+  setThemeColors(primaryRgb, secondaryRgb, shadowHex) {
+    this.primaryRgb = primaryRgb;
+    this.secondaryRgb = secondaryRgb;
+    this.shadowColor = shadowHex;
   }
 
   createFloatingShapes() {
@@ -132,11 +144,12 @@ class CyberParticleCanvas {
       }
 
       // Draw particle dot
+      const rgb = p.isPrimary ? this.primaryRgb : this.secondaryRgb;
       this.ctx.beginPath();
       this.ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-      this.ctx.fillStyle = p.color + p.baseAlpha + ')';
+      this.ctx.fillStyle = `rgba(${rgb}, ${p.baseAlpha})`;
       this.ctx.shadowBlur = 8;
-      this.ctx.shadowColor = '#00f0ff';
+      this.ctx.shadowColor = this.shadowColor;
       this.ctx.fill();
       this.ctx.shadowBlur = 0;
 
@@ -146,11 +159,11 @@ class CyberParticleCanvas {
         const dist2 = Math.hypot(p.x - p2.x, p.y - p2.y);
 
         if (dist2 < 120) {
-          const alpha = (1 - dist2 / 120) * 0.15;
+          const alpha = (1 - dist2 / 120) * 0.16;
           this.ctx.beginPath();
           this.ctx.moveTo(p.x, p.y);
           this.ctx.lineTo(p2.x, p2.y);
-          this.ctx.strokeStyle = `rgba(0, 240, 255, ${alpha})`;
+          this.ctx.strokeStyle = `rgba(${this.primaryRgb}, ${alpha})`;
           this.ctx.lineWidth = 0.8;
           this.ctx.stroke();
         }

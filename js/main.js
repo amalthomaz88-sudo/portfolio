@@ -22,8 +22,118 @@ document.addEventListener('DOMContentLoaded', () => {
   initResumeSection();
   initContactForm();
   initHashRouter();
+  initThemeSettings();
   initButtonAudioEffects();
 });
+
+/* ==========================================================================
+   THEME SETTINGS CONTROLLER (5 DARK THEMES)
+   ========================================================================== */
+function initThemeSettings() {
+  const themeModal = document.getElementById('theme-modal');
+  const themeBtn = document.getElementById('theme-settings-btn');
+  const closeBtn = document.getElementById('theme-modal-close');
+  const themeCards = document.querySelectorAll('.theme-option-card');
+
+  const THEMES_CONFIG = {
+    'cyber-cyan': {
+      name: 'Cyber Cyan',
+      primaryRgb: '0, 240, 255',
+      secondaryRgb: '168, 85, 247',
+      shadowHex: '#00f0ff'
+    },
+    'emerald-matrix': {
+      name: 'Emerald Matrix',
+      primaryRgb: '0, 255, 136',
+      secondaryRgb: '16, 185, 129',
+      shadowHex: '#00ff88'
+    },
+    'crimson-fury': {
+      name: 'Crimson Fury',
+      primaryRgb: '255, 42, 95',
+      secondaryRgb: '255, 85, 0',
+      shadowHex: '#ff2a5f'
+    },
+    'royal-void': {
+      name: 'Royal Void',
+      primaryRgb: '192, 66, 255',
+      secondaryRgb: '0, 229, 255',
+      shadowHex: '#c042ff'
+    },
+    'solar-amber': {
+      name: 'Solar Amber',
+      primaryRgb: '255, 183, 3',
+      secondaryRgb: '251, 133, 0',
+      shadowHex: '#ffb703'
+    }
+  };
+
+  function applyTheme(themeKey, playSfx = false) {
+    const config = THEMES_CONFIG[themeKey] || THEMES_CONFIG['cyber-cyan'];
+    document.documentElement.setAttribute('data-theme', themeKey);
+    localStorage.setItem('gamedev_portfolio_theme', themeKey);
+
+    // Update particle canvas
+    if (window.cyberCanvasInstance && typeof window.cyberCanvasInstance.setThemeColors === 'function') {
+      window.cyberCanvasInstance.setThemeColors(config.primaryRgb, config.secondaryRgb, config.shadowHex);
+    }
+
+    // Update active card indicator
+    themeCards.forEach(card => {
+      const isCurrent = card.getAttribute('data-theme-key') === themeKey;
+      card.classList.toggle('active', isCurrent);
+      const tag = card.querySelector('.theme-status-tag');
+      if (tag) tag.textContent = isCurrent ? 'ACTIVE' : 'SELECT';
+    });
+
+    if (playSfx && window.gameAudio) {
+      window.gameAudio.playClick();
+    }
+  }
+
+  // Load saved theme or default
+  const savedTheme = localStorage.getItem('gamedev_portfolio_theme') || 'cyber-cyan';
+  applyTheme(savedTheme, false);
+
+  // Open modal
+  if (themeBtn && themeModal) {
+    themeBtn.addEventListener('click', () => {
+      themeModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      if (window.gameAudio) window.gameAudio.playOpenModal();
+    });
+  }
+
+  // Close modal
+  function closeThemeModal() {
+    if (themeModal) {
+      themeModal.classList.remove('active');
+      document.body.style.overflow = '';
+      if (window.gameAudio) window.gameAudio.playCloseModal();
+    }
+  }
+
+  if (closeBtn) closeBtn.addEventListener('click', closeThemeModal);
+  if (themeModal) {
+    themeModal.addEventListener('click', (e) => {
+      if (e.target === themeModal) closeThemeModal();
+    });
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && themeModal && themeModal.classList.contains('active')) {
+      closeThemeModal();
+    }
+  });
+
+  // Attach click listener to each theme card
+  themeCards.forEach(card => {
+    card.addEventListener('click', () => {
+      const themeKey = card.getAttribute('data-theme-key');
+      applyTheme(themeKey, true);
+    });
+  });
+}
 
 /* ==========================================================================
    AUDIO HUD CONTROLS
