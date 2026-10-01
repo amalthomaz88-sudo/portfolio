@@ -56,8 +56,24 @@
    5 DISTINCT DARK GAMING THEMES
    ========================================================================== */
 
-/* 1. Cyber Cyan (Default Sci-Fi Theme) */
-[data-theme="cyber-cyan"], :root {
+/* 1. Cyber Blue (1st Theme & Default Gaming Theme) */
+[data-theme="cyber-blue"], :root {
+  --bg-primary: #050a15;
+  --bg-secondary: #0a1324;
+  --bg-card: rgba(12, 24, 48, 0.78);
+  --bg-card-hover: rgba(18, 36, 72, 0.88);
+  --bg-glass: rgba(10, 20, 40, 0.72);
+  --bg-glass-heavy: rgba(6, 12, 26, 0.92);
+  --neon-cyan: #1d72fe;
+  --neon-cyan-glow: rgba(29, 114, 254, 0.45);
+  --neon-purple: #00d4ff;
+  --neon-purple-glow: rgba(0, 212, 255, 0.4);
+  --border-medium: rgba(29, 114, 254, 0.28);
+  --border-glow: rgba(29, 114, 254, 0.7);
+}
+
+/* 2. Cyber Cyan (Neon Cyan & Electric Purple) */
+[data-theme="cyber-cyan"] {
   --bg-primary: #07090e;
   --bg-secondary: #0d121d;
   --bg-card: rgba(15, 23, 42, 0.75);

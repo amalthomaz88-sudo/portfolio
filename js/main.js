@@ -36,6 +36,12 @@ function initThemeSettings() {
   const themeCards = document.querySelectorAll('.theme-option-card');
 
   const THEMES_CONFIG = {
+    'cyber-blue': {
+      name: 'Cyber Blue',
+      primaryRgb: '29, 114, 254',
+      secondaryRgb: '0, 212, 255',
+      shadowHex: '#1d72fe'
+    },
     'cyber-cyan': {
       name: 'Cyber Cyan',
       primaryRgb: '0, 240, 255',
@@ -69,7 +75,7 @@ function initThemeSettings() {
   };
 
   function applyTheme(themeKey, playSfx = false) {
-    const config = THEMES_CONFIG[themeKey] || THEMES_CONFIG['cyber-cyan'];
+    const config = THEMES_CONFIG[themeKey] || THEMES_CONFIG['cyber-blue'];
     document.documentElement.setAttribute('data-theme', themeKey);
     localStorage.setItem('gamedev_portfolio_theme', themeKey);
 
@@ -92,7 +98,7 @@ function initThemeSettings() {
   }
 
   // Load saved theme or default
-  const savedTheme = localStorage.getItem('gamedev_portfolio_theme') || 'cyber-cyan';
+  const savedTheme = localStorage.getItem('gamedev_portfolio_theme') || 'cyber-blue';
   applyTheme(savedTheme, false);
 
   // Open modal

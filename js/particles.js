@@ -14,10 +14,10 @@ class CyberParticleCanvas {
     this.particleCount = 55;
     this.animationFrameId = null;
 
-    // Theme color presets
-    this.primaryRgb = '0, 240, 255';
-    this.secondaryRgb = '168, 85, 247';
-    this.shadowColor = '#00f0ff';
+    // Theme color presets (Default: Cyber Blue)
+    this.primaryRgb = '29, 114, 254';
+    this.secondaryRgb = '0, 212, 255';
+    this.shadowColor = '#1d72fe';
 
     this.init();
     window.cyberCanvasInstance = this;
