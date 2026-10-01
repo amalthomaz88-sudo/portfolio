@@ -359,13 +359,36 @@
   padding: 0;
 }
 
+/* ==========================================================================
+   LENIS IPHONE-GRADE MOMENTUM FLOW & SMOOTH SCROLL SYSTEM
+   ========================================================================== */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
 html {
-  scroll-behavior: smooth;
-  scroll-padding-top: var(--nav-height);
   font-size: 16px;
   background-color: var(--bg-primary);
   color: var(--text-main);
   overflow-x: hidden;
+  scroll-padding-top: var(--nav-height);
+  -webkit-overflow-scrolling: touch;
 }
 
 body {
@@ -377,6 +400,29 @@ body {
   position: relative;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Minimalist Apple / Cyber Neon Floating Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(29, 114, 254, 0.35);
+  border-radius: 9999px;
+  border: 2px solid var(--bg-primary);
+  transition: background var(--transition-fast);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--neon-cyan);
+  box-shadow: 0 0 12px var(--neon-cyan-glow);
 }
 
 /* Modal Segmented Navigation Tabs */

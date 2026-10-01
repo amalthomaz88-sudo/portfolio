@@ -399,7 +399,7 @@
        GAMEPLAY VIDEO SIMULATOR MODAL
        ========================================================================== -->
   <div class="video-modal-backdrop" id="video-modal" aria-hidden="true" role="dialog">
-    <div class="video-modal-box">
+    <div class="video-modal-box" data-lenis-prevent>
       <div class="video-screen-container">
         <img id="video-screen-img" src="" alt="Gameplay Preview">
         <div class="video-hud-overlay">
@@ -433,7 +433,7 @@
        PROJECT DETAILS MODAL / DRAWER
        ========================================================================== -->
   <div class="modal-backdrop" id="project-details-modal" aria-hidden="true" role="dialog">
-    <div class="modal-window">
+    <div class="modal-window" data-lenis-prevent>
       <button class="modal-close-btn" id="modal-close-btn" aria-label="Close project modal">&times;</button>
       <div id="modal-dynamic-content">
         <!-- Populated on click from PROJECTS_DATA -->
@@ -753,7 +753,7 @@
        THEME SETTINGS MODAL / HUD CUSTOMIZER
        ========================================================================== -->
   <div class="theme-modal-backdrop" id="theme-modal" aria-hidden="true" role="dialog">
-    <div class="theme-modal-window">
+    <div class="theme-modal-window" data-lenis-prevent>
       <div class="theme-modal-header">
         <h3 class="theme-modal-title">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1001,6 +1001,7 @@
   </footer>
 
   <!-- Scripts -->
+  <script src="js/lenis.min.js"></script>
   <script src="js/audio.js"></script>
   <script src="js/particles.js"></script>
   <script src="js/data/projects.js"></script>

@@ -3,6 +3,9 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Initialize iPhone-grade momentum smooth scroll (Lenis)
+  initSmoothScroll();
+
   // Initialize canvas background particles
   if (typeof CyberParticleCanvas !== 'undefined') {
     new CyberParticleCanvas('cyber-canvas');
@@ -25,6 +28,65 @@ document.addEventListener('DOMContentLoaded', () => {
   initThemeSettings();
   initButtonAudioEffects();
 });
+
+/* ==========================================================================
+   IPHONE-GRADE MOMENTUM FLOW & SMOOTH SCROLL (LENIS)
+   ========================================================================== */
+function initSmoothScroll() {
+  if (typeof Lenis === 'undefined') return;
+
+  const lenis = new Lenis({
+    duration: 1.25,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Apple exponential deceleration
+    direction: 'vertical',
+    gestureDirection: 'vertical',
+    smooth: true,
+    smoothTouch: true, // Momentum inertial scrolling on touch/iPhone
+    touchMultiplier: 1.5, // Fluid iOS swipe sensitivity
+    wheelMultiplier: 0.95, // Buttery mouse wheel glide
+    infinite: false,
+  });
+
+  window.lenisInstance = lenis;
+
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+  requestAnimationFrame(raf);
+
+  // Smooth cinematic anchor scrolling for all internal navigation & buttons
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const href = this.getAttribute('href');
+      if (!href || href === '#' || href.startsWith('#/')) return;
+
+      const targetEl = document.querySelector(href);
+      if (targetEl) {
+        e.preventDefault();
+        lenis.scrollTo(targetEl, {
+          offset: -65,
+          duration: 1.2,
+          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+        });
+      }
+    });
+  });
+}
+
+function lockBodyScroll() {
+  document.body.style.overflow = 'hidden';
+  if (window.lenisInstance && typeof window.lenisInstance.stop === 'function') {
+    window.lenisInstance.stop();
+  }
+}
+
+function unlockBodyScroll() {
+  document.body.style.overflow = '';
+  if (window.lenisInstance && typeof window.lenisInstance.start === 'function') {
+    window.lenisInstance.start();
+  }
+}
 
 /* ==========================================================================
    THEME & BACKGROUND HUD SETTINGS (5 THEMES & 5 BACKGROUNDS)
@@ -152,7 +214,7 @@ function initThemeSettings() {
   if (themeBtn && themeModal) {
     themeBtn.addEventListener('click', () => {
       themeModal.classList.add('active');
-      document.body.style.overflow = 'hidden';
+      lockBodyScroll();
       if (window.gameAudio) window.gameAudio.playOpenModal();
     });
   }
@@ -161,7 +223,7 @@ function initThemeSettings() {
   function closeThemeModal() {
     if (themeModal) {
       themeModal.classList.remove('active');
-      document.body.style.overflow = '';
+      unlockBodyScroll();
       if (window.gameAudio) window.gameAudio.playCloseModal();
     }
   }
@@ -632,7 +694,7 @@ function openProjectDetails(projectId) {
   `;
 
   modalBackdrop.classList.add('active');
-  document.body.style.overflow = 'hidden';
+  lockBodyScroll();
 
   if (window.gameAudio) window.gameAudio.playOpenModal();
   window.location.hash = `/project/${project.id}`;
@@ -642,7 +704,7 @@ function closeProjectDetails() {
   const modalBackdrop = document.getElementById('project-details-modal');
   if (modalBackdrop) {
     modalBackdrop.classList.remove('active');
-    document.body.style.overflow = '';
+    unlockBodyScroll();
     if (window.gameAudio) window.gameAudio.playCloseModal();
     if (window.location.hash.startsWith('#/project/')) {
       history.pushState('', document.title, window.location.pathname + window.location.search);
@@ -689,7 +751,7 @@ function openVideoModal(projectId) {
   if (specEl) specEl.textContent = `Engine: ${project.engine} | ${project.stats.fps || '60 FPS'} | Audio: Spatial Stereo`;
 
   videoModal.classList.add('active');
-  document.body.style.overflow = 'hidden';
+  lockBodyScroll();
 
   if (window.gameAudio) window.gameAudio.playOpenModal();
 }
@@ -701,7 +763,7 @@ function closeVideoModal() {
     // Only restore body overflow if details modal isn't also open
     const detailsModal = document.getElementById('project-details-modal');
     if (!detailsModal || !detailsModal.classList.contains('active')) {
-      document.body.style.overflow = '';
+      unlockBodyScroll();
     }
     if (window.gameAudio) window.gameAudio.playCloseModal();
   }
@@ -869,7 +931,11 @@ function initResumeSection() {
       pdfContainer.style.display = isHidden ? 'block' : 'none';
       if (window.gameAudio) window.gameAudio.playClick();
       if (isHidden) {
-        pdfContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        if (window.lenisInstance) {
+          window.lenisInstance.scrollTo(pdfContainer, { offset: -80, duration: 1.0 });
+        } else {
+          pdfContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
       }
     });
   }
