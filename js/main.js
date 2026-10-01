@@ -6,6 +6,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize iPhone-grade momentum smooth scroll (Lenis)
   initSmoothScroll();
 
+  // Initialize 1-scroll next section snap flow
+  initSectionScrollSnap();
+
   // Initialize canvas background particles
   if (typeof CyberParticleCanvas !== 'undefined') {
     new CyberParticleCanvas('cyber-canvas');
@@ -86,6 +89,229 @@ function unlockBodyScroll() {
   if (window.lenisInstance && typeof window.lenisInstance.start === 'function') {
     window.lenisInstance.start();
   }
+}
+
+/* ==========================================================================
+   ONE-SCROLL SECTION SNAP CONTROLLER (APPLE FLOW / KEYNOTE DECK)
+   ========================================================================== */
+function initSectionScrollSnap() {
+  const sections = Array.from(document.querySelectorAll('section[id]'));
+  if (!sections.length) return;
+
+  const navDots = document.querySelectorAll('.section-nav-dot');
+  const navLinks = document.querySelectorAll('.nav-link');
+  let isSnapping = false;
+  let cooldownTimer = null;
+  let touchStartY = 0;
+  let touchStartX = 0;
+
+  function getSnapStops() {
+    const navHeight = 70;
+    const windowH = window.innerHeight;
+    const stops = [];
+
+    sections.forEach((sec, idx) => {
+      const top = Math.max(0, sec.offsetTop - (idx === 0 ? 0 : navHeight));
+      const secH = sec.offsetHeight;
+
+      // Section Start stop
+      stops.push({
+        y: top,
+        id: sec.id,
+        isSub: false
+      });
+
+      // If section is significantly taller than screen, add lower stop
+      if (secH > windowH + 180) {
+        const bottomStop = top + secH - windowH + 30;
+        stops.push({
+          y: bottomStop,
+          id: sec.id,
+          isSub: true
+        });
+      }
+    });
+
+    return stops;
+  }
+
+  function getCurrentStopIndex(stops) {
+    const currentY = window.scrollY;
+    let closestIndex = 0;
+    let minDiff = Infinity;
+
+    stops.forEach((stop, i) => {
+      const diff = Math.abs(stop.y - currentY);
+      if (diff < minDiff) {
+        minDiff = diff;
+        closestIndex = i;
+      }
+    });
+
+    return closestIndex;
+  }
+
+  function scrollToStop(index, playSfx = true) {
+    const stops = getSnapStops();
+    const clampedIndex = Math.max(0, Math.min(index, stops.length - 1));
+    const targetStop = stops[clampedIndex];
+    if (!targetStop) return;
+
+    isSnapping = true;
+    clearTimeout(cooldownTimer);
+
+    // Update active indicators
+    updateActiveSection(targetStop.id);
+
+    if (playSfx && window.gameAudio) {
+      window.gameAudio.playHover();
+    }
+
+    if (window.lenisInstance) {
+      window.lenisInstance.scrollTo(targetStop.y, {
+        duration: 1.15,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        onComplete: () => {
+          cooldownTimer = setTimeout(() => {
+            isSnapping = false;
+          }, 180);
+        }
+      });
+    } else {
+      window.scrollTo({
+        top: targetStop.y,
+        behavior: 'smooth'
+      });
+      cooldownTimer = setTimeout(() => {
+        isSnapping = false;
+      }, 950);
+    }
+  }
+
+  function updateActiveSection(sectionId) {
+    // Update navbar links
+    navLinks.forEach(link => {
+      const isTarget = link.getAttribute('href') === `#${sectionId}`;
+      link.classList.toggle('active', isTarget);
+    });
+
+    // Update side dots
+    navDots.forEach(dot => {
+      const isTarget = dot.getAttribute('data-target') === `#${sectionId}`;
+      dot.classList.toggle('active', isTarget);
+    });
+  }
+
+  // Wheel listener: 1 scroll gesture = 1 section jump
+  let wheelDeltaSum = 0;
+  let wheelDebounceTimer = null;
+
+  window.addEventListener('wheel', (e) => {
+    // If any modal is open, let inner modal scroll normally
+    const activeModal = document.querySelector('.modal-backdrop.active, .video-modal-backdrop.active, .theme-modal-backdrop.active');
+    if (activeModal) return;
+
+    // Ignore tiny trackpad noise
+    if (Math.abs(e.deltaY) < 4) return;
+
+    e.preventDefault();
+
+    if (isSnapping) return;
+
+    wheelDeltaSum += e.deltaY;
+    clearTimeout(wheelDebounceTimer);
+
+    wheelDebounceTimer = setTimeout(() => {
+      wheelDeltaSum = 0;
+    }, 150);
+
+    const THRESHOLD = 35;
+    if (Math.abs(wheelDeltaSum) >= THRESHOLD) {
+      const stops = getSnapStops();
+      const currentIdx = getCurrentStopIndex(stops);
+      const direction = wheelDeltaSum > 0 ? 1 : -1;
+      wheelDeltaSum = 0;
+
+      const nextIdx = currentIdx + direction;
+      if (nextIdx >= 0 && nextIdx < stops.length) {
+        scrollToStop(nextIdx, true);
+      }
+    }
+  }, { passive: false });
+
+  // Touch swipe support (iPhone & Mobile)
+  window.addEventListener('touchstart', (e) => {
+    touchStartY = e.touches[0].clientY;
+    touchStartX = e.touches[0].clientX;
+  }, { passive: true });
+
+  window.addEventListener('touchend', (e) => {
+    const activeModal = document.querySelector('.modal-backdrop.active, .video-modal-backdrop.active, .theme-modal-backdrop.active');
+    if (activeModal) return;
+
+    if (isSnapping) return;
+
+    const touchEndY = e.changedTouches[0].clientY;
+    const touchEndX = e.changedTouches[0].clientX;
+
+    const diffY = touchStartY - touchEndY;
+    const diffX = touchStartX - touchEndX;
+
+    // Only if vertical swipe dominates horizontal swipe
+    if (Math.abs(diffY) > Math.abs(diffX) && Math.abs(diffY) > 40) {
+      const stops = getSnapStops();
+      const currentIdx = getCurrentStopIndex(stops);
+      const direction = diffY > 0 ? 1 : -1;
+
+      const nextIdx = currentIdx + direction;
+      if (nextIdx >= 0 && nextIdx < stops.length) {
+        scrollToStop(nextIdx, true);
+      }
+    }
+  }, { passive: true });
+
+  // Keyboard navigation (ArrowDown, ArrowUp, PageDown, PageUp, Space)
+  window.addEventListener('keydown', (e) => {
+    const activeModal = document.querySelector('.modal-backdrop.active, .video-modal-backdrop.active, .theme-modal-backdrop.active');
+    if (activeModal) return;
+
+    // Don't intercept if user is typing in contact form input or textarea
+    if (['INPUT', 'TEXTAREA'].includes(document.activeElement?.tagName)) return;
+
+    if (['ArrowDown', 'PageDown', ' '].includes(e.key)) {
+      e.preventDefault();
+      if (!isSnapping) {
+        const stops = getSnapStops();
+        const currentIdx = getCurrentStopIndex(stops);
+        if (currentIdx < stops.length - 1) scrollToStop(currentIdx + 1, true);
+      }
+    } else if (['ArrowUp', 'PageUp'].includes(e.key)) {
+      e.preventDefault();
+      if (!isSnapping) {
+        const stops = getSnapStops();
+        const currentIdx = getCurrentStopIndex(stops);
+        if (currentIdx > 0) scrollToStop(currentIdx - 1, true);
+      }
+    }
+  });
+
+  // Attach click listener to side dots
+  navDots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      const targetId = dot.getAttribute('data-target')?.replace('#', '');
+      const stops = getSnapStops();
+      const matchIdx = stops.findIndex(s => s.id === targetId && !s.isSub);
+      if (matchIdx !== -1) {
+        scrollToStop(matchIdx, true);
+      }
+    });
+  });
+
+  // Expose globally
+  window.sectionScrollSnap = {
+    scrollToStop,
+    getSnapStops
+  };
 }
 
 /* ==========================================================================
@@ -331,6 +557,11 @@ function initNavigation() {
       if (link.getAttribute('href') === `#${currentId}`) {
         link.classList.add('active');
       }
+    });
+
+    const navDots = document.querySelectorAll('.section-nav-dot');
+    navDots.forEach(dot => {
+      dot.classList.toggle('active', dot.getAttribute('data-target') === `#${currentId}`);
     });
   });
 
