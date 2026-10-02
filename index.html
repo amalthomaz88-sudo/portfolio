@@ -15,7 +15,7 @@
   <meta property="og:type" content="website">
 
   <!-- Favicon -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300f0ff'><polygon points='12 2 2 7 12 12 22 7 12 2'/><polyline points='2 17 12 22 22 17'/><polyline points='2 12 12 17 22 12'/></svg>" type="image/svg+xml">
+  <link rel="icon" href="assets/images/amal-thomas.jpg" type="image/jpeg">
 
   <!-- Custom CSS Styles -->
   <link rel="stylesheet" href="css/style.css">
@@ -25,21 +25,57 @@
   <!-- Background Interactive Matrix Particle Canvas -->
   <canvas id="cyber-canvas"></canvas>
 
+  <!-- Floating Quick Section Dots HUD Navigator -->
+  <aside class="section-nav-hud" id="section-nav-hud" aria-label="Section navigation">
+    <div class="section-nav-track">
+      <button class="section-nav-dot active" data-target="#home" aria-label="Navigate to Home">
+        <span class="dot-label">01 HOME</span>
+        <span class="dot-circle"></span>
+      </button>
+      <button class="section-nav-dot" data-target="#about" aria-label="Navigate to About">
+        <span class="dot-label">02 ABOUT</span>
+        <span class="dot-circle"></span>
+      </button>
+      <button class="section-nav-dot" data-target="#skills" aria-label="Navigate to Skills">
+        <span class="dot-label">03 SKILLS</span>
+        <span class="dot-circle"></span>
+      </button>
+      <button class="section-nav-dot" data-target="#projects" aria-label="Navigate to Projects">
+        <span class="dot-label">04 PROJECTS</span>
+        <span class="dot-circle"></span>
+      </button>
+      <button class="section-nav-dot" data-target="#experience" aria-label="Navigate to Experience">
+        <span class="dot-label">05 EXPERIENCE</span>
+        <span class="dot-circle"></span>
+      </button>
+      <button class="section-nav-dot" data-target="#process" aria-label="Navigate to Process">
+        <span class="dot-label">06 PROCESS</span>
+        <span class="dot-circle"></span>
+      </button>
+      <button class="section-nav-dot" data-target="#resume" aria-label="Navigate to Resume">
+        <span class="dot-label">07 RESUME</span>
+        <span class="dot-circle"></span>
+      </button>
+      <button class="section-nav-dot" data-target="#contact" aria-label="Navigate to Contact">
+        <span class="dot-label">08 CONTACT</span>
+        <span class="dot-circle"></span>
+      </button>
+    </div>
+  </aside>
+
   <!-- ==========================================================================
        STICKY NAVIGATION BAR
        ========================================================================== -->
   <header class="navbar" id="navbar">
-    <div class="container nav-container">
+    <div class="nav-container">
       <a href="#home" class="nav-brand" aria-label="Amal Thomas Home">
         <div class="brand-logo">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2" y="6" width="20" height="12" rx="2"></rect>
-            <path d="M6 12h4m-2-2v4"></path>
-            <line x1="15" y1="11" x2="15" y2="11.01"></line>
-            <line x1="18" y1="13" x2="18" y2="13.01"></line>
-          </svg>
+          <img src="assets/images/amal-thomas.jpg" alt="Amal Thomas Logo" class="brand-robot-img" width="36" height="36">
         </div>
-        <span>AMAL<span class="brand-dot">.DEV</span></span>
+        <span class="brand-text">
+          <span class="brand-name-first">AMAL</span>
+          <span class="brand-name-last brand-dot">THOMAS</span>
+        </span>
       </a>
 
       <!-- Desktop & Mobile Navigation Links -->
@@ -56,18 +92,59 @@
         </ul>
       </nav>
 
-      <!-- Utility Actions (Audio SFX Toggle) -->
+      <!-- Utility Actions (Avatar Profile & 3-Line Menu with Theme & SFX) -->
       <div class="nav-actions">
-        <button class="sound-toggle-btn" id="sound-toggle" title="Toggle UI sound effects" aria-label="Toggle Sound Effects">
-          <span class="sound-indicator"></span>
-          <span id="sound-status-text">SFX: ON</span>
+        <!-- Circular Avatar Ring Anchor (Profile) -->
+        <a href="#about" class="nav-avatar-pill" title="Amal Thomas Profile">
+          <img src="assets/images/amal-thomas.jpg" alt="Amal Thomas" class="nav-avatar-img" width="34" height="34">
+        </a>
+
+        <!-- 3-Line Menu Button (Top Right Corner) -->
+        <button class="nav-menu-toggle mobile-nav-toggle" id="nav-menu-toggle" aria-label="Open Settings Menu" aria-expanded="false" title="Menu & HUD Controls">
+          <span></span>
+          <span></span>
+          <span></span>
         </button>
 
-        <button class="mobile-nav-toggle" aria-label="Toggle mobile menu" aria-expanded="false">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
+        <!-- Cyber Glass Dropdown Menu (Contains Theme, SFX, and Mobile Nav) -->
+        <div class="nav-menu-dropdown" id="nav-menu-dropdown">
+          <div class="menu-dropdown-header">
+            <span class="menu-dropdown-tag">HUD CONTROLS</span>
+          </div>
+
+          <div class="menu-controls-group">
+            <!-- Theme Studio Button -->
+            <button class="menu-action-item" id="theme-settings-btn" title="Customize HUD Theme">
+              <div class="menu-item-left">
+                <span class="theme-palette-icon"></span>
+                <span class="menu-item-title">HUD Theme Studio</span>
+              </div>
+              <span class="menu-item-badge" id="theme-btn-label">THEME</span>
+            </button>
+
+            <!-- SFX Audio Toggle Button -->
+            <button class="menu-action-item" id="sound-toggle" title="Toggle UI sound effects">
+              <div class="menu-item-left">
+                <span class="sound-indicator"></span>
+                <span class="menu-item-title">Audio SFX</span>
+              </div>
+              <span class="menu-item-badge" id="sound-status-text">SFX: ON</span>
+            </button>
+          </div>
+
+          <!-- Mobile Section Navigation (shown on small screens) -->
+          <div class="menu-mobile-links">
+            <div class="menu-divider"></div>
+            <a href="#home" class="dropdown-nav-link">Home</a>
+            <a href="#about" class="dropdown-nav-link">About</a>
+            <a href="#skills" class="dropdown-nav-link">Skills</a>
+            <a href="#projects" class="dropdown-nav-link">Projects</a>
+            <a href="#experience" class="dropdown-nav-link">Experience</a>
+            <a href="#process" class="dropdown-nav-link">Process</a>
+            <a href="#resume" class="dropdown-nav-link">Resume</a>
+            <a href="#contact" class="dropdown-nav-link">Contact</a>
+          </div>
+        </div>
       </div>
     </div>
   </header>
@@ -84,7 +161,11 @@
       <div class="hero-content">
         <div class="hero-badge">
           <span class="pulse-ring"></span>
-          <span class="engine-pill">UNITY GAME DEVELOPER • 2D & 3D SPECIALIST</span>
+          <span class="engine-pill">
+            <span class="badge-highlight">UNITY GAME DEVELOPER</span>
+            <span class="badge-separator">•</span>
+            <span class="badge-role">2D & 3D SPECIALIST</span>
+          </span>
         </div>
 
         <h1 class="hero-title-main">AMAL THOMAS</h1>
@@ -128,40 +209,39 @@
             <span class="metric-value purple">2+ YRS</span>
             <span class="metric-label">Experience</span>
           </div>
-          <div class="metric-item">
-            <span class="metric-value">PHOTON</span>
-            <span class="metric-label">Multiplayer Sync</span>
-          </div>
-          <div class="metric-item">
-            <span class="metric-value cyan">60 FPS</span>
-            <span class="metric-label">Target Framerate</span>
-          </div>
         </div>
       </div>
 
-      <!-- Right 3D Visual Frame -->
-      <div class="hero-visual-wrapper">
-        <div class="hero-visual-card">
-          <!-- Cyber HUD Top -->
-          <div class="hero-hud-header">
-            <span>UNITY_ENGINE://CORE_ACTIVE</span>
-            <span class="hud-status-badge">ONLINE • 60 FPS</span>
-          </div>
+      <!-- Right 3D Visual Frame (Cyber Geometric Shield) -->
+      <div class="hero-visual-wrapper hero-shield-wrapper" id="hero-visual-wrapper">
+        <!-- Ambient Atmospheric Soft Backlight -->
+        <div class="shield-ambient-aura" aria-hidden="true"></div>
 
-          <img src="assets/images/amal-thomas.jpg" alt="Amal Thomas - Unity Game Developer" width="480" height="550">
+        <!-- Geometric SVG Energy Track Lines (Rotating Concentric Hex/Shield Rings) -->
+        <svg class="shield-svg-tracks" viewBox="0 0 500 500" aria-hidden="true">
+          <polygon class="svg-shield-outer" points="250,16 465,135 465,365 250,484 35,365 35,135" />
+          <polygon class="svg-shield-inner" points="250,38 442,148 442,352 250,462 58,352 58,148" />
+        </svg>
 
-          <!-- Cyber HUD Bottom -->
-          <div class="hero-hud-footer">
-            <div>
-              <div class="hud-specs-title">AMAL THOMAS LABS</div>
-              <div class="hud-specs-sub">UNITY 2D/3D • C# • PHOTON • DOTWEEN</div>
-            </div>
-            <div class="hud-badges-group">
-              <span class="hud-tag">UNITY</span>
-              <span class="hud-tag">C#</span>
-              <span class="hud-tag">2D/3D</span>
-            </div>
+        <!-- Main Cyber Shield Frame Card -->
+        <div class="hero-shield-card" id="hero-visual-card">
+          <!-- Pure Photo Container with Shield Polygon Cutout -->
+          <div class="shield-photo-viewport">
+            <img src="assets/images/amal-thomas.jpg" alt="Amal Thomas - Unity Game Developer" class="shield-portrait-img" width="480" height="520">
+            <!-- Subtle Cinematic Film Tone Vignette & Holographic Rim -->
+            <div class="shield-tone-vignette" aria-hidden="true"></div>
+            <div class="shield-inner-glow" aria-hidden="true"></div>
           </div>
+        </div>
+
+        <!-- Floating Architecture Chip (Bottom Right) -->
+        <div class="hero-float-chip chip-bottom-right" title="Game Developer">
+          <div class="chip-icon">🎮</div>
+          <div class="chip-content">
+            <span class="chip-title">GAME DEVELOPER</span>
+            <span class="chip-sub">Unity 2D & 3D</span>
+          </div>
+          <div class="chip-badge-tech">C#</div>
         </div>
       </div>
     </div>
@@ -175,8 +255,8 @@
       <div class="section-header">
         <span class="section-tag">Profile & Philosophy</span>
         <h2 class="section-title">ENGINEERING GAMEPLAY EXPERIENCES</h2>
-        <p class="section-description">
-          Passionate Game Developer with 2+ years of hands-on experience building scalable, reusable 2D and 3D game systems using Unity and C#.
+        <p class="section-description about-hero-lead">
+          <span class="hl-cyan">Passionate Game Developer</span> with <span class="hl-badge">2+ YEARS</span> of hands-on experience building <span class="hl-white">scalable, reusable 2D and 3D game systems</span> using <span class="hl-cyan">Unity</span> and <span class="hl-purple">C#</span>.
         </p>
       </div>
 
@@ -394,9 +474,10 @@
        GAMEPLAY VIDEO SIMULATOR MODAL
        ========================================================================== -->
   <div class="video-modal-backdrop" id="video-modal" aria-hidden="true" role="dialog">
-    <div class="video-modal-box">
+    <div class="video-modal-box" data-lenis-prevent>
       <div class="video-screen-container">
-        <img id="video-screen-img" src="" alt="Gameplay Preview">
+        <div id="video-screen-blueprint" class="video-screen-blueprint"></div>
+        <img id="video-screen-img" src="" alt="Gameplay Preview" style="display:none;">
         <div class="video-hud-overlay">
           <div class="video-hud-top">
             <div class="rec-badge">
@@ -428,7 +509,7 @@
        PROJECT DETAILS MODAL / DRAWER
        ========================================================================== -->
   <div class="modal-backdrop" id="project-details-modal" aria-hidden="true" role="dialog">
-    <div class="modal-window">
+    <div class="modal-window" data-lenis-prevent>
       <button class="modal-close-btn" id="modal-close-btn" aria-label="Close project modal">&times;</button>
       <div id="modal-dynamic-content">
         <!-- Populated on click from PROJECTS_DATA -->
@@ -743,6 +824,239 @@
       </div>
     </div>
   </section>
+
+  <!-- ==========================================================================
+       THEME SETTINGS MODAL / HUD CUSTOMIZER
+       ========================================================================== -->
+  <div class="theme-modal-backdrop" id="theme-modal" aria-hidden="true" role="dialog">
+    <div class="theme-modal-window" data-lenis-prevent>
+      <div class="theme-modal-header">
+        <h3 class="theme-modal-title">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M12 2a10 10 0 0 0-4 19.18V18a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v3.18A10 10 0 0 0 12 2z"></path>
+            <circle cx="8.5" cy="8.5" r="1.5" fill="currentColor"></circle>
+            <circle cx="15.5" cy="8.5" r="1.5" fill="currentColor"></circle>
+          </svg>
+          HUD THEME CALIBRATION
+        </h3>
+        <button class="modal-close-btn" id="theme-modal-close" style="position: static;" aria-label="Close theme modal">&times;</button>
+      </div>
+      <p class="theme-modal-sub">CUSTOMIZE HUD DISPLAY & ATMOSPHERIC ENVIRONMENT</p>
+
+      <!-- Segmented HUD Settings Tabs -->
+      <div class="hud-settings-tabs">
+        <button class="hud-tab-btn active" data-tab="themes" id="tab-btn-themes">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M12 2a10 10 0 0 0-4 19.18V18a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v3.18A10 10 0 0 0 12 2z"></path>
+          </svg>
+          COLOR THEMES (5)
+        </button>
+        <button class="hud-tab-btn" data-tab="backgrounds" id="tab-btn-backgrounds">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+            <circle cx="8.5" cy="8.5" r="1.5"></circle>
+            <polyline points="21 15 16 10 5 21"></polyline>
+          </svg>
+          BACKGROUND STYLES (5)
+        </button>
+      </div>
+
+      <!-- Tab Pane 1: 5 Dark Gaming Color Themes -->
+      <div class="hud-tab-pane active" id="pane-themes">
+        <div class="theme-cards-grid" id="theme-options-list">
+          <!-- 1. Cyber Blue (1st Theme & Default) -->
+          <div class="theme-option-card active" data-theme-key="cyber-blue">
+            <div class="theme-card-left">
+              <div class="theme-swatches-preview">
+                <span class="theme-swatch-dot primary" style="background: #1d72fe;"></span>
+                <span class="theme-swatch-dot secondary" style="background: #00d4ff;"></span>
+              </div>
+              <div class="theme-info-box">
+                <h4>CYBER BLUE</h4>
+                <p>Default Gaming • Electric Cobalt Blue & Icy Azure</p>
+              </div>
+            </div>
+            <span class="theme-status-tag">ACTIVE</span>
+          </div>
+
+          <!-- 2. Cyber Cyan -->
+          <div class="theme-option-card" data-theme-key="cyber-cyan">
+            <div class="theme-card-left">
+              <div class="theme-swatches-preview">
+                <span class="theme-swatch-dot primary" style="background: #00f0ff;"></span>
+                <span class="theme-swatch-dot secondary" style="background: #a855f7;"></span>
+              </div>
+              <div class="theme-info-box">
+                <h4>CYBER CYAN</h4>
+                <p>Sci-Fi Neon • Electric Cyan & Plasma Purple</p>
+              </div>
+            </div>
+            <span class="theme-status-tag">SELECT</span>
+          </div>
+
+          <!-- 3. Emerald Matrix -->
+          <div class="theme-option-card" data-theme-key="emerald-matrix">
+            <div class="theme-card-left">
+              <div class="theme-swatches-preview">
+                <span class="theme-swatch-dot primary" style="background: #00ff88;"></span>
+                <span class="theme-swatch-dot secondary" style="background: #10b981;"></span>
+              </div>
+              <div class="theme-info-box">
+                <h4>EMERALD MATRIX</h4>
+                <p>Matrix Cyber Green & Bio Emerald</p>
+              </div>
+            </div>
+            <span class="theme-status-tag">SELECT</span>
+          </div>
+
+          <!-- 4. Crimson Fury -->
+          <div class="theme-option-card" data-theme-key="crimson-fury">
+            <div class="theme-card-left">
+              <div class="theme-swatches-preview">
+                <span class="theme-swatch-dot primary" style="background: #ff2a5f;"></span>
+                <span class="theme-swatch-dot secondary" style="background: #ff5500;"></span>
+              </div>
+              <div class="theme-info-box">
+                <h4>CRIMSON FURY</h4>
+                <p>Cyberpunk Red • Sith Magma Core & Blazing Ember</p>
+              </div>
+            </div>
+            <span class="theme-status-tag">SELECT</span>
+          </div>
+
+          <!-- 5. Royal Void -->
+          <div class="theme-option-card" data-theme-key="royal-void">
+            <div class="theme-card-left">
+              <div class="theme-swatches-preview">
+                <span class="theme-swatch-dot primary" style="background: #c042ff;"></span>
+                <span class="theme-swatch-dot secondary" style="background: #00e5ff;"></span>
+              </div>
+              <div class="theme-info-box">
+                <h4>ROYAL VOID</h4>
+                <p>Deep Space Amethyst • Cosmic Violet & Starlight</p>
+              </div>
+            </div>
+            <span class="theme-status-tag">SELECT</span>
+          </div>
+
+          <!-- 6. Solar Amber -->
+          <div class="theme-option-card" data-theme-key="solar-amber">
+            <div class="theme-card-left">
+              <div class="theme-swatches-preview">
+                <span class="theme-swatch-dot primary" style="background: #ffb703;"></span>
+                <span class="theme-swatch-dot secondary" style="background: #fb8500;"></span>
+              </div>
+              <div class="theme-info-box">
+                <h4>SOLAR AMBER</h4>
+                <p>Deus Ex Cyber Gold • High-Voltage Solar & Flame</p>
+              </div>
+            </div>
+            <span class="theme-status-tag">SELECT</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab Pane 2: 5 Selectable Dark Gaming Background Styles -->
+      <div class="hud-tab-pane" id="pane-backgrounds">
+        <div class="theme-cards-grid" id="bg-options-list">
+          <!-- 1. Cyber Grid (Default) -->
+          <div class="theme-option-card bg-option-card active" data-bg-key="cyber-grid">
+            <div class="theme-card-left">
+              <div class="bg-icon-badge">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="3" y1="3" x2="21" y2="3"></line>
+                  <line x1="3" y1="9" x2="21" y2="9"></line>
+                  <line x1="3" y1="15" x2="21" y2="15"></line>
+                  <line x1="3" y1="21" x2="21" y2="21"></line>
+                  <line x1="3" y1="3" x2="3" y2="21"></line>
+                  <line x1="9" y1="3" x2="9" y2="21"></line>
+                  <line x1="15" y1="3" x2="15" y2="21"></line>
+                  <line x1="21" y1="3" x2="21" y2="21"></line>
+                </svg>
+              </div>
+              <div class="theme-info-box">
+                <h4>CYBER GRID (DEFAULT)</h4>
+                <p>Sci-Fi Coordinate Matrix • Orthogonal Grid & Constellation Nodes</p>
+              </div>
+            </div>
+            <span class="theme-status-tag">ACTIVE</span>
+          </div>
+
+          <!-- 2. Deep Space Nebula -->
+          <div class="theme-option-card bg-option-card" data-bg-key="deep-space">
+            <div class="theme-card-left">
+              <div class="bg-icon-badge">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                </svg>
+              </div>
+              <div class="theme-info-box">
+                <h4>DEEP SPACE NEBULA</h4>
+                <p>Cosmic Starlight • Soft Radial Nebulae & Twinkling Cosmos Drift</p>
+              </div>
+            </div>
+            <span class="theme-status-tag">SELECT</span>
+          </div>
+
+          <!-- 3. Hex Shield Lattice -->
+          <div class="theme-option-card bg-option-card" data-bg-key="hex-shield">
+            <div class="theme-card-left">
+              <div class="bg-icon-badge">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+              </div>
+              <div class="theme-info-box">
+                <h4>HEX SHIELD LATTICE</h4>
+                <p>High-Tech Energy Barrier • Honeycomb Shield Matrix Array</p>
+              </div>
+            </div>
+            <span class="theme-status-tag">SELECT</span>
+          </div>
+
+          <!-- 4. Retro Synthwave Scanlines -->
+          <div class="theme-option-card bg-option-card" data-bg-key="synth-scanlines">
+            <div class="theme-card-left">
+              <div class="bg-icon-badge">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                  <line x1="8" y1="21" x2="16" y2="21"></line>
+                  <line x1="12" y1="17" x2="12" y2="21"></line>
+                  <line x1="6" y1="8" x2="18" y2="8"></line>
+                  <line x1="6" y1="12" x2="18" y2="12"></line>
+                </svg>
+              </div>
+              <div class="theme-info-box">
+                <h4>SYNTH SCANLINES</h4>
+                <p>Arcade CRT Terminal • Horizontal Scanlines & Rising Neon Embers</p>
+              </div>
+            </div>
+            <span class="theme-status-tag">SELECT</span>
+          </div>
+
+          <!-- 5. Carbon Matrix -->
+          <div class="theme-option-card bg-option-card" data-bg-key="carbon-matrix">
+            <div class="theme-card-left">
+              <div class="bg-icon-badge">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                  <polyline points="2 17 12 22 22 17"></polyline>
+                  <polyline points="2 12 12 17 22 12"></polyline>
+                </svg>
+              </div>
+              <div class="theme-info-box">
+                <h4>CARBON MATRIX</h4>
+                <p>Tactical Micro-Weave • Minimalist Carbon Fiber & Ambient Drift</p>
+              </div>
+            </div>
+            <span class="theme-status-tag">SELECT</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- ==========================================================================
        FOOTER

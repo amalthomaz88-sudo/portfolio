@@ -11,6 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize all interactive modules
   initAudioControls();
   initNavigation();
+  initSectionNavHud();
+  initThemeStudio();
   initHeroVisualTilt();
   initAboutStats();
   initSkillsSection();
@@ -71,13 +73,15 @@ function initNavigation() {
   const navLinks = document.querySelectorAll('.nav-link');
   const mobileToggle = document.querySelector('.mobile-nav-toggle');
   const navLinksContainer = document.querySelector('.nav-links');
+  const menuDropdown = document.getElementById('nav-menu-dropdown');
+  const dropdownLinks = document.querySelectorAll('.dropdown-nav-link');
   const sections = document.querySelectorAll('section[id]');
 
   // Scroll listener for sticky navbar appearance
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 40) {
+    if (navbar && window.scrollY > 40) {
       navbar.classList.add('scrolled');
-    } else {
+    } else if (navbar) {
       navbar.classList.remove('scrolled');
     }
 
@@ -99,33 +103,132 @@ function initNavigation() {
         link.classList.add('active');
       }
     });
+
+    document.querySelectorAll('.section-nav-dot').forEach(dot => {
+      dot.classList.toggle('active', dot.getAttribute('data-target') === `#${currentId}`);
+    });
   });
 
   // Mobile menu toggle
-  if (mobileToggle && navLinksContainer) {
+  if (mobileToggle) {
     mobileToggle.addEventListener('click', () => {
-      mobileToggle.classList.toggle('open');
-      navLinksContainer.classList.toggle('open');
+      const isOpen = menuDropdown
+        ? menuDropdown.classList.toggle('open')
+        : navLinksContainer && navLinksContainer.classList.toggle('open');
+      mobileToggle.classList.toggle('open', Boolean(isOpen));
+      mobileToggle.setAttribute('aria-expanded', String(Boolean(isOpen)));
     });
 
-    // Close mobile menu on link click
-    navLinks.forEach(link => {
+    [...navLinks, ...dropdownLinks].forEach(link => {
       link.addEventListener('click', () => {
         mobileToggle.classList.remove('open');
-        navLinksContainer.classList.remove('open');
+        mobileToggle.setAttribute('aria-expanded', 'false');
+        menuDropdown?.classList.remove('open');
+        navLinksContainer?.classList.remove('open');
       });
     });
   }
+}
+
+function initSectionNavHud() {
+  document.querySelectorAll('.section-nav-dot').forEach(dot => {
+    dot.addEventListener('click', () => {
+      const target = document.querySelector(dot.getAttribute('data-target'));
+      target?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+}
+
+function initThemeStudio() {
+  const openButton = document.getElementById('theme-settings-btn');
+  const modal = document.getElementById('theme-modal');
+  const closeButton = document.getElementById('theme-modal-close');
+  if (!openButton || !modal || !closeButton) return;
+
+  const openModal = () => {
+    modal.classList.add('active');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeModal = () => {
+    modal.classList.remove('active');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  };
+
+  openButton.addEventListener('click', openModal);
+  closeButton.addEventListener('click', closeModal);
+  modal.addEventListener('click', event => {
+    if (event.target === modal) closeModal();
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && modal.classList.contains('active')) closeModal();
+  });
+
+  document.querySelectorAll('.hud-tab-btn').forEach(button => {
+    button.addEventListener('click', () => {
+      const selectedTab = button.dataset.tab;
+      document.querySelectorAll('.hud-tab-btn').forEach(tab => {
+        tab.classList.toggle('active', tab === button);
+      });
+      document.querySelectorAll('.hud-tab-pane').forEach(pane => {
+        pane.classList.toggle('active', pane.id === `pane-${selectedTab}`);
+      });
+    });
+  });
+
+  const colorThemes = {
+    'cyber-blue': { cyan: '#00d4ff', purple: '#1d72fe' },
+    'cyber-cyan': { cyan: '#00f0ff', purple: '#a855f7' },
+    'emerald-matrix': { cyan: '#00ff88', purple: '#10b981' },
+    'crimson-fury': { cyan: '#ff2a5f', purple: '#ff5500' },
+    'royal-void': { cyan: '#c042ff', purple: '#00e5ff' },
+    'solar-amber': { cyan: '#ffb703', purple: '#fb8500' }
+  };
+
+  const selectOption = (cards, selectedCard) => {
+    cards.forEach(card => {
+      const selected = card === selectedCard;
+      card.classList.toggle('active', selected);
+      const label = card.querySelector('.theme-status-tag');
+      if (label) label.textContent = selected ? 'ACTIVE' : 'SELECT';
+    });
+  };
+
+  const themeCards = [...document.querySelectorAll('[data-theme-key]')];
+  themeCards.forEach(card => {
+    card.addEventListener('click', () => {
+      const key = card.dataset.themeKey;
+      const colors = colorThemes[key];
+      if (!colors) return;
+      document.body.dataset.theme = key;
+      selectOption(themeCards, card);
+    });
+  });
+
+  const backgroundCards = [...document.querySelectorAll('[data-bg-key]')];
+  backgroundCards.forEach(card => {
+    card.addEventListener('click', () => {
+      const key = card.dataset.bgKey;
+      document.body.dataset.background = key;
+      selectOption(backgroundCards, card);
+    });
+  });
+
+  themeCards.find(card => card.classList.contains('active'))?.click();
+  backgroundCards.find(card => card.classList.contains('active'))?.click();
 }
 
 /* ==========================================================================
    HERO 3D TILT EFFECT
    ========================================================================== */
 function initHeroVisualTilt() {
-  const card = document.querySelector('.hero-visual-card');
+  const card = document.querySelector('.hero-visual-card, .hero-shield-card');
   if (!card) return;
 
   const wrapper = document.querySelector('.hero-visual-wrapper');
+  if (!wrapper) return;
 
   wrapper.addEventListener('mousemove', (e) => {
     const rect = card.getBoundingClientRect();
@@ -461,6 +564,7 @@ function openProjectDetails(projectId) {
   `;
 
   modalBackdrop.classList.add('active');
+  modalBackdrop.setAttribute('aria-hidden', 'false');
   document.body.style.overflow = 'hidden';
 
   if (window.gameAudio) window.gameAudio.playOpenModal();
@@ -471,7 +575,11 @@ function closeProjectDetails() {
   const modalBackdrop = document.getElementById('project-details-modal');
   if (modalBackdrop) {
     modalBackdrop.classList.remove('active');
-    document.body.style.overflow = '';
+    modalBackdrop.setAttribute('aria-hidden', 'true');
+    const videoModal = document.getElementById('video-modal');
+    if (!videoModal || !videoModal.classList.contains('active')) {
+      document.body.style.overflow = '';
+    }
     if (window.gameAudio) window.gameAudio.playCloseModal();
     if (window.location.hash.startsWith('#/project/')) {
       history.pushState('', document.title, window.location.pathname + window.location.search);
@@ -510,14 +618,20 @@ function openVideoModal(projectId) {
 
   const videoModal = document.getElementById('video-modal');
   const screenImg = document.getElementById('video-screen-img');
+  const blueprint = document.getElementById('video-screen-blueprint');
   const titleEl = document.getElementById('video-project-title');
   const specEl = document.getElementById('video-project-spec');
 
-  if (screenImg) screenImg.src = project.heroImage;
+  if (screenImg) {
+    screenImg.src = project.heroImage;
+    screenImg.style.display = 'block';
+  }
+  if (blueprint) blueprint.style.display = 'none';
   if (titleEl) titleEl.textContent = `${project.title} - Realtime Gameplay Preview`;
   if (specEl) specEl.textContent = `Engine: ${project.engine} | ${project.stats.fps || '60 FPS'} | Audio: Spatial Stereo`;
 
   videoModal.classList.add('active');
+  videoModal.setAttribute('aria-hidden', 'false');
   document.body.style.overflow = 'hidden';
 
   if (window.gameAudio) window.gameAudio.playOpenModal();
@@ -527,6 +641,11 @@ function closeVideoModal() {
   const videoModal = document.getElementById('video-modal');
   if (videoModal) {
     videoModal.classList.remove('active');
+    videoModal.setAttribute('aria-hidden', 'true');
+    const screenImg = document.getElementById('video-screen-img');
+    const blueprint = document.getElementById('video-screen-blueprint');
+    if (screenImg) screenImg.style.display = 'none';
+    if (blueprint) blueprint.style.display = '';
     // Only restore body overflow if details modal isn't also open
     const detailsModal = document.getElementById('project-details-modal');
     if (!detailsModal || !detailsModal.classList.contains('active')) {
