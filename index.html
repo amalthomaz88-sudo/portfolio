@@ -1,174 +1,1330 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="cyber-blue">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Amal Thomas | Unity Game Developer (2D & 3D Gameplay Programmer)</title>
   <meta name="description" content="Portfolio of Amal Thomas, a passionate Unity Game Developer with 2+ years of experience specializing in Unity, C#, 2D & 3D gameplay programming, multiplayer (Photon), AI, and performance optimization.">
-  <meta name="keywords" content="Amal Thomas, Unity Game Developer, Unity Developer, C# Programming, Photon Multiplayer, Game AI, Gameplay Programmer, Kerala, India, Portfolio">
+  <meta name="keywords" content="Amal Thomas, Unity Game Developer, Unity Developer, C# Programming, Photon Multiplayer, Game AI, Gameplay Programmer, Kerala, India">
   <meta name="author" content="Amal Thomas">
 
-  <!-- Open Graph / Social Meta -->
+  <!-- Open Graph -->
   <meta property="og:title" content="Amal Thomas | Unity Game Developer Portfolio">
   <meta property="og:description" content="Passionate Game Developer with 2+ years experience in Unity and C#, focused on engaging 2D and 3D games, multiplayer systems, and performance optimization.">
-  <meta property="og:image" content="assets/images/hero-dev.jpg">
   <meta property="og:type" content="website">
 
-  <!-- Favicon -->
-  <link rel="icon" href="assets/images/robot-logo.png" type="image/png">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Custom CSS Styles -->
-  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ==========================================================================
+       ALL-IN-ONE CINEMATIC CYBERPUNK GAME DEVELOPER DESIGN SYSTEM
+       ========================================================================== */
+    :root {
+      --bg-primary: #050a15;
+      --bg-secondary: #0a1324;
+      --bg-card: rgba(12, 24, 48, 0.78);
+      --bg-card-hover: rgba(18, 36, 72, 0.92);
+      --bg-glass: rgba(10, 20, 40, 0.8);
+      --bg-glass-heavy: rgba(6, 12, 26, 0.95);
+      
+      --neon-cyan: #00f0ff;
+      --neon-cyan-glow: rgba(0, 240, 255, 0.35);
+      --neon-purple: #a855f7;
+      --neon-purple-glow: rgba(168, 85, 247, 0.35);
+      --neon-emerald: #10b981;
+      --neon-amber: #f59e0b;
+      --neon-rose: #f43f5e;
+
+      --text-main: #f1f5f9;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --text-highlight: #ffffff;
+
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-medium: rgba(0, 240, 255, 0.28);
+      --border-glow: rgba(0, 240, 255, 0.75);
+
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-heading: 'Rajdhani', sans-serif;
+      --font-code: 'JetBrains Mono', monospace;
+
+      --max-width: 1280px;
+      --nav-height: 74px;
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+      --radius-full: 9999px;
+      --transition-smooth: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    [data-theme="cyber-cyan"] {
+      --bg-primary: #07090e;
+      --bg-secondary: #0d121d;
+      --bg-card: rgba(15, 23, 42, 0.8);
+      --bg-card-hover: rgba(22, 33, 58, 0.92);
+      --neon-cyan: #00f0ff;
+      --neon-purple: #a855f7;
+      --border-medium: rgba(0, 240, 255, 0.25);
+    }
+
+    [data-theme="emerald-matrix"] {
+      --bg-primary: #040c07;
+      --bg-secondary: #08160f;
+      --bg-card: rgba(8, 28, 18, 0.82);
+      --bg-card-hover: rgba(12, 42, 26, 0.92);
+      --neon-cyan: #00ff88;
+      --neon-purple: #10b981;
+      --neon-cyan-glow: rgba(0, 255, 136, 0.35);
+      --border-medium: rgba(0, 255, 136, 0.28);
+    }
+
+    [data-theme="crimson-neon"] {
+      --bg-primary: #0e0508;
+      --bg-secondary: #1a0a10;
+      --bg-card: rgba(34, 12, 20, 0.82);
+      --bg-card-hover: rgba(52, 16, 30, 0.92);
+      --neon-cyan: #ff2a5f;
+      --neon-purple: #f43f5e;
+      --neon-cyan-glow: rgba(255, 42, 95, 0.35);
+      --border-medium: rgba(255, 42, 95, 0.28);
+    }
+
+    [data-theme="synthwave"] {
+      --bg-primary: #0b0717;
+      --bg-secondary: #150e2c;
+      --bg-card: rgba(28, 15, 52, 0.82);
+      --bg-card-hover: rgba(42, 22, 78, 0.92);
+      --neon-cyan: #00f0ff;
+      --neon-purple: #d946ef;
+      --border-medium: rgba(217, 70, 239, 0.3);
+    }
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Ambient Canvas */
+    #bg-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: color var(--transition-smooth);
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      border: none;
+      background: none;
+    }
+
+    /* ==========================================================================
+       NAVBAR
+       ========================================================================== */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: var(--nav-height);
+      background: rgba(5, 10, 21, 0.82);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+      z-index: 1000;
+      transition: background var(--transition-smooth), border-color var(--transition-smooth);
+    }
+
+    .navbar.scrolled {
+      background: rgba(5, 10, 21, 0.96);
+      border-bottom-color: var(--border-medium);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+    }
+
+    .brand-logo-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #050a15;
+      font-weight: 800;
+      font-size: 1.15rem;
+      box-shadow: 0 0 16px var(--neon-cyan-glow);
+    }
+
+    .brand-text .brand-last {
+      color: var(--neon-cyan);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-link {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      position: relative;
+      padding: 0.4rem 0;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: var(--neon-cyan);
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: var(--neon-cyan);
+      box-shadow: 0 0 8px var(--neon-cyan);
+      transition: width var(--transition-smooth);
+    }
+
+    .nav-link:hover::after, .nav-link.active::after {
+      width: 100%;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .btn-hud-tool {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.45rem 0.9rem;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-full);
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all var(--transition-smooth);
+    }
+
+    .btn-hud-tool:hover {
+      background: rgba(0, 240, 255, 0.08);
+      border-color: var(--neon-cyan);
+      color: var(--neon-cyan);
+      box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+    }
+
+    /* Mobile toggle */
+    .mobile-menu-btn {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      padding: 6px;
+      cursor: pointer;
+    }
+
+    .mobile-menu-btn span {
+      width: 24px;
+      height: 2px;
+      background: var(--text-main);
+      transition: all var(--transition-smooth);
+    }
+
+    /* ==========================================================================
+       HERO SECTION
+       ========================================================================== */
+    .hero-section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: calc(var(--nav-height) + 3rem) 0 4rem;
+      position: relative;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      align-items: center;
+      gap: 3.5rem;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      padding: 0.4rem 1.1rem;
+      background: rgba(0, 240, 255, 0.08);
+      border: 1px solid var(--border-medium);
+      border-radius: var(--radius-full);
+      margin-bottom: 1.5rem;
+    }
+
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--neon-emerald);
+      box-shadow: 0 0 10px var(--neon-emerald);
+      animation: pulse 2s infinite;
+    }
+
+    .badge-text {
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: var(--neon-cyan);
+    }
+
+    .hero-title {
+      font-family: var(--font-heading);
+      font-size: clamp(2.8rem, 5.5vw, 4.4rem);
+      font-weight: 700;
+      line-height: 1.08;
+      letter-spacing: 1px;
+      margin-bottom: 0.85rem;
+    }
+
+    .hero-title .glow-name {
+      background: linear-gradient(120deg, #ffffff 30%, var(--neon-cyan) 85%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 25px rgba(0, 240, 255, 0.35));
+    }
+
+    .hero-tagline {
+      font-family: var(--font-heading);
+      font-size: 1.45rem;
+      font-weight: 600;
+      color: var(--neon-cyan);
+      margin-bottom: 1.25rem;
+      letter-spacing: 0.5px;
+    }
+
+    .hero-bio {
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+      max-width: 600px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.65rem;
+      padding: 0.85rem 1.85rem;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-heading);
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      transition: all var(--transition-smooth);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--neon-cyan), #00a8ff);
+      color: #050a15;
+      box-shadow: 0 4px 20px var(--neon-cyan-glow);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px var(--neon-cyan-glow);
+      filter: brightness(1.1);
+    }
+
+    .btn-outline {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-medium);
+      color: var(--text-main);
+    }
+
+    .btn-outline:hover {
+      background: rgba(0, 240, 255, 0.08);
+      border-color: var(--neon-cyan);
+      color: var(--neon-cyan);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0, 240, 255, 0.2);
+    }
+
+    .hero-metrics {
+      display: flex;
+      gap: 2.5rem;
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 1.8rem;
+    }
+
+    .metric-value {
+      font-family: var(--font-heading);
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--neon-cyan);
+      line-height: 1;
+      display: block;
+      margin-bottom: 0.35rem;
+    }
+
+    .metric-label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Hero Visual Card */
+    .hero-visual {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .cyber-frame-outer {
+      position: relative;
+      width: 360px;
+      height: 420px;
+      border-radius: var(--radius-lg);
+      padding: 4px;
+      background: linear-gradient(135deg, var(--neon-cyan), transparent 40%, var(--neon-purple));
+      box-shadow: 0 0 45px var(--neon-cyan-glow);
+      animation: floatFrame 6s ease-in-out infinite;
+    }
+
+    .cyber-frame-inner {
+      width: 100%;
+      height: 100%;
+      background: var(--bg-secondary);
+      border-radius: calc(var(--radius-lg) - 4px);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .cyber-frame-inner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 15%;
+      display: block;
+    }
+
+    /* Image Fallback Procedural Avatar */
+    .avatar-fallback {
+      width: 100%;
+      height: 100%;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at center, #132240 0%, #060b17 100%);
+      color: var(--neon-cyan);
+    }
+
+    .avatar-fallback svg {
+      width: 90px;
+      height: 90px;
+      margin-bottom: 1rem;
+      filter: drop-shadow(0 0 15px var(--neon-cyan));
+    }
+
+    .hero-badge-overlay {
+      position: absolute;
+      bottom: -15px;
+      right: -15px;
+      background: var(--bg-glass-heavy);
+      border: 1px solid var(--border-medium);
+      backdrop-filter: blur(12px);
+      padding: 0.75rem 1.25rem;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+    }
+
+    .badge-icon-game {
+      font-size: 1.4rem;
+    }
+
+    .badge-info-top {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--text-main);
+      display: block;
+    }
+
+    .badge-info-sub {
+      font-size: 0.75rem;
+      color: var(--neon-cyan);
+      display: block;
+    }
+
+    /* ==========================================================================
+       SECTION HEADERS
+       ========================================================================== */
+    .section {
+      padding: 6rem 0;
+      position: relative;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 3.5rem;
+    }
+
+    .section-tag {
+      font-family: var(--font-heading);
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--neon-cyan);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      display: inline-block;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: 1px;
+      margin-bottom: 1rem;
+    }
+
+    .section-desc {
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+    }
+
+    /* ==========================================================================
+       PROJECTS SECTION & CARDS
+       ========================================================================== */
+    .projects-filter-bar {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-bottom: 2.8rem;
+    }
+
+    .filter-btn {
+      padding: 0.55rem 1.25rem;
+      border-radius: var(--radius-full);
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+      transition: all var(--transition-smooth);
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+      background: rgba(0, 240, 255, 0.12);
+      border-color: var(--neon-cyan);
+      color: var(--neon-cyan);
+      box-shadow: 0 0 15px rgba(0, 240, 255, 0.25);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 2rem;
+    }
+
+    .project-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform var(--transition-smooth), border-color var(--transition-smooth), box-shadow var(--transition-smooth);
+      position: relative;
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--border-medium);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 25px var(--neon-cyan-glow);
+    }
+
+    .project-media {
+      position: relative;
+      width: 100%;
+      height: 200px;
+      background: #091322;
+      overflow: hidden;
+    }
+
+    .project-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .project-card:hover .project-media img {
+      transform: scale(1.06);
+    }
+
+    .project-fallback-art {
+      width: 100%;
+      height: 100%;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #0d1b32, #070e1c);
+      color: var(--neon-cyan);
+      font-size: 3rem;
+    }
+
+    .project-genre-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: rgba(5, 10, 21, 0.85);
+      border: 1px solid var(--border-medium);
+      backdrop-filter: blur(8px);
+      padding: 0.3rem 0.75rem;
+      border-radius: var(--radius-full);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--neon-cyan);
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+    }
+
+    .project-body {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .project-title {
+      font-family: var(--font-heading);
+      font-size: 1.45rem;
+      font-weight: 700;
+      margin-bottom: 0.45rem;
+      color: var(--text-main);
+    }
+
+    .project-subtitle {
+      font-size: 0.85rem;
+      color: var(--neon-cyan);
+      margin-bottom: 0.85rem;
+      font-weight: 500;
+    }
+
+    .project-desc {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+      flex-grow: 1;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .project-tag {
+      font-family: var(--font-code);
+      font-size: 0.75rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-secondary);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .project-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 1rem;
+      margin-top: auto;
+    }
+
+    .btn-details {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--neon-cyan);
+      cursor: pointer;
+      transition: gap var(--transition-smooth);
+    }
+
+    .btn-details:hover {
+      gap: 0.85rem;
+      color: #ffffff;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 0.65rem;
+    }
+
+    .icon-link {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-secondary);
+      transition: all var(--transition-smooth);
+    }
+
+    .icon-link:hover {
+      background: var(--neon-cyan);
+      color: #050a15;
+      border-color: var(--neon-cyan);
+      box-shadow: 0 0 12px var(--neon-cyan-glow);
+    }
+
+    /* ==========================================================================
+       SKILLS SECTION
+       ========================================================================== */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.75rem;
+    }
+
+    .skill-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1.85rem;
+      transition: transform var(--transition-smooth), border-color var(--transition-smooth);
+    }
+
+    .skill-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--border-medium);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    }
+
+    .skill-card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .skill-card-icon {
+      font-size: 1.6rem;
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: rgba(0, 240, 255, 0.08);
+      border: 1px solid var(--border-medium);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .skill-card-title {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+
+    .skill-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .skill-list li {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    .skill-list li::before {
+      content: 'â–¹';
+      color: var(--neon-cyan);
+      font-size: 1.1rem;
+    }
+
+    /* ==========================================================================
+       EXPERIENCE & RESUME
+       ========================================================================== */
+    .experience-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 2.2rem;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    .experience-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(180deg, var(--neon-cyan), var(--neon-purple));
+      border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+    }
+
+    .exp-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 0.5rem;
+    }
+
+    .exp-role {
+      font-family: var(--font-heading);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .exp-period {
+      font-family: var(--font-code);
+      font-size: 0.85rem;
+      color: var(--neon-cyan);
+    }
+
+    .exp-company {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      margin-bottom: 1.25rem;
+    }
+
+    .exp-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    .exp-bullets li {
+      padding-left: 1.5rem;
+      position: relative;
+    }
+
+    .exp-bullets li::before {
+      content: 'âœ”';
+      position: absolute;
+      left: 0;
+      color: var(--neon-cyan);
+      font-size: 0.85rem;
+    }
+
+    /* ==========================================================================
+       CONTACT SECTION
+       ========================================================================== */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .contact-info-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .contact-channel {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      padding: 1.25rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      transition: all var(--transition-smooth);
+    }
+
+    .contact-channel:hover {
+      border-color: var(--border-medium);
+      transform: translateX(6px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    }
+
+    .channel-icon-box {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: rgba(0, 240, 255, 0.08);
+      border: 1px solid var(--border-medium);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--neon-cyan);
+    }
+
+    .channel-title {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .channel-val {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .social-row {
+      display: flex;
+      gap: 0.85rem;
+    }
+
+    .btn-social {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      padding: 0.75rem 1.4rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      color: var(--text-main);
+      font-family: var(--font-heading);
+      font-weight: 700;
+      transition: all var(--transition-smooth);
+    }
+
+    .btn-social:hover {
+      border-color: var(--neon-cyan);
+      color: var(--neon-cyan);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px var(--neon-cyan-glow);
+    }
+
+    /* Contact Form */
+    .contact-form-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 2.2rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-label {
+      display: block;
+      font-family: var(--font-heading);
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text-secondary);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-input, .form-textarea {
+      width: 100%;
+      background: rgba(5, 10, 21, 0.7);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 0.85rem 1rem;
+      color: var(--text-main);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      transition: border-color var(--transition-smooth), box-shadow var(--transition-smooth);
+    }
+
+    .form-input:focus, .form-textarea:focus {
+      outline: none;
+      border-color: var(--neon-cyan);
+      box-shadow: 0 0 15px var(--neon-cyan-glow);
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    /* ==========================================================================
+       MODAL (PROJECT DETAILS & THEMES)
+       ========================================================================== */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(3, 6, 12, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      opacity: 0;
+      visibility: hidden;
+      transition: all var(--transition-smooth);
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-dialog {
+      width: 100%;
+      max-width: 820px;
+      max-height: 85vh;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-medium);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.9), 0 0 40px var(--neon-cyan-glow);
+      overflow-y: auto;
+      position: relative;
+      transform: translateY(20px) scale(0.97);
+      transition: transform var(--transition-smooth);
+    }
+
+    .modal-overlay.active .modal-dialog {
+      transform: translateY(0) scale(1);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.25rem;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      cursor: pointer;
+      z-index: 10;
+      transition: all var(--transition-smooth);
+    }
+
+    .modal-close:hover {
+      background: var(--neon-cyan);
+      color: #050a15;
+    }
+
+    .modal-content-inner {
+      padding: 2.2rem;
+    }
+
+    .modal-title {
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+    }
+
+    .modal-subtitle {
+      color: var(--neon-cyan);
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .modal-section-title {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin: 1.5rem 0 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .modal-section-title::before {
+      content: '//';
+      color: var(--neon-cyan);
+    }
+
+    .modal-features-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    .modal-features-list li::before {
+      content: 'âœ” ';
+      color: var(--neon-cyan);
+    }
+
+    /* Theme Studio Modal options */
+    .themes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .theme-card-option {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      transition: all var(--transition-smooth);
+    }
+
+    .theme-card-option:hover, .theme-card-option.active {
+      border-color: var(--neon-cyan);
+      box-shadow: 0 0 15px var(--neon-cyan-glow);
+    }
+
+    .theme-preview-dot {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+    }
+
+    /* ==========================================================================
+       FOOTER
+       ========================================================================== */
+    .footer {
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border-subtle);
+      padding: 3rem 0;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .footer a {
+      color: var(--neon-cyan);
+    }
+
+    /* ==========================================================================
+       ANIMATIONS
+       ========================================================================== */
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.9); }
+    }
+
+    @keyframes floatFrame {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* ==========================================================================
+       RESPONSIVE DESIGN
+       ========================================================================== */
+    @media (max-width: 992px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .hero-bio {
+        margin: 0 auto 2rem;
+      }
+      .hero-buttons {
+        justify-content: center;
+      }
+      .hero-metrics {
+        justify-content: center;
+      }
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+      .nav-links {
+        display: none;
+      }
+      .mobile-menu-btn {
+        display: flex;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-metrics {
+        flex-direction: column;
+        gap: 1.25rem;
+      }
+      .cyber-frame-outer {
+        width: 280px;
+        height: 330px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- Background Interactive Matrix Particle Canvas -->
-  <canvas id="cyber-canvas"></canvas>
-
-  <!-- Floating Quick Section Dots HUD Navigator -->
-  <aside class="section-nav-hud" id="section-nav-hud" aria-label="Section navigation">
-    <div class="section-nav-track">
-      <button class="section-nav-dot active" data-target="#home" aria-label="Navigate to Home">
-        <span class="dot-label">01 HOME</span>
-        <span class="dot-circle"></span>
-      </button>
-      <button class="section-nav-dot" data-target="#about" aria-label="Navigate to About">
-        <span class="dot-label">02 ABOUT</span>
-        <span class="dot-circle"></span>
-      </button>
-      <button class="section-nav-dot" data-target="#skills" aria-label="Navigate to Skills">
-        <span class="dot-label">03 SKILLS</span>
-        <span class="dot-circle"></span>
-      </button>
-      <button class="section-nav-dot" data-target="#projects" aria-label="Navigate to Projects">
-        <span class="dot-label">04 PROJECTS</span>
-        <span class="dot-circle"></span>
-      </button>
-      <button class="section-nav-dot" data-target="#experience" aria-label="Navigate to Experience">
-        <span class="dot-label">05 EXPERIENCE</span>
-        <span class="dot-circle"></span>
-      </button>
-      <button class="section-nav-dot" data-target="#process" aria-label="Navigate to Process">
-        <span class="dot-label">06 PROCESS</span>
-        <span class="dot-circle"></span>
-      </button>
-      <button class="section-nav-dot" data-target="#resume" aria-label="Navigate to Resume">
-        <span class="dot-label">07 RESUME</span>
-        <span class="dot-circle"></span>
-      </button>
-      <button class="section-nav-dot" data-target="#contact" aria-label="Navigate to Contact">
-        <span class="dot-label">08 CONTACT</span>
-        <span class="dot-circle"></span>
-      </button>
-    </div>
-  </aside>
+  <!-- Ambient Matrix/Constellation Canvas -->
+  <canvas id="bg-canvas"></canvas>
 
   <!-- ==========================================================================
-       STICKY NAVIGATION BAR
+       NAVIGATION BAR
        ========================================================================== -->
   <header class="navbar" id="navbar">
     <div class="nav-container">
-      <a href="#home" class="nav-brand" aria-label="Amal Thomas Home">
-        <div class="brand-logo">
-          <img src="assets/images/robot-logo.png" alt="Amal Thomas Logo" class="brand-robot-img" width="36" height="36">
-        </div>
-        <span class="brand-text">
-          <span class="brand-name-first">AMAL</span>
-          <span class="brand-name-last brand-dot">THOMAS</span>
-        </span>
+      <a href="#home" class="nav-brand">
+        <div class="brand-logo-icon">AT</div>
+        <span class="brand-text">AMAL <span class="brand-last">THOMAS</span></span>
       </a>
 
-      <!-- Desktop & Mobile Navigation Links -->
-      <nav aria-label="Main Navigation">
-        <ul class="nav-links">
-          <li><a href="#home" class="nav-link active">Home</a></li>
-          <li><a href="#about" class="nav-link">About</a></li>
-          <li><a href="#skills" class="nav-link">Skills</a></li>
-          <li><a href="#projects" class="nav-link">Projects</a></li>
-          <li><a href="#experience" class="nav-link">Experience</a></li>
-          <li><a href="#process" class="nav-link">Process</a></li>
-          <li><a href="#resume" class="nav-link">Resume</a></li>
-          <li><a href="#contact" class="nav-link">Contact</a></li>
-        </ul>
-      </nav>
+      <ul class="nav-links">
+        <li><a href="#home" class="nav-link active">Home</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#skills" class="nav-link">Skills</a></li>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#experience" class="nav-link">Experience</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
 
-      <!-- Utility Actions (Avatar Profile & 3-Line Menu with Theme & SFX) -->
       <div class="nav-actions">
-        <!-- Circular Avatar Ring Anchor (Profile) -->
-        <a href="#about" class="nav-avatar-pill" title="Amal Thomas Profile">
-          <img src="assets/images/amal-thomas.jpg" alt="Amal Thomas" class="nav-avatar-img" width="34" height="34">
-        </a>
+        <!-- SFX Toggle -->
+        <button class="btn-hud-tool" id="audio-toggle-btn" title="Toggle Sound FX">
+          <span id="audio-icon">ðŸ”Š</span>
+          <span id="audio-status">SFX: ON</span>
+        </button>
 
-        <!-- 3-Line Menu Button (Top Right Corner) -->
-        <button class="nav-menu-toggle mobile-nav-toggle" id="nav-menu-toggle" aria-label="Open Settings Menu" aria-expanded="false" title="Menu & HUD Controls">
+        <!-- Theme Studio -->
+        <button class="btn-hud-tool" id="theme-btn" title="Change Theme">
+          <span>ðŸŽ¨</span>
+          <span>THEME</span>
+        </button>
+
+        <!-- Mobile Menu -->
+        <button class="mobile-menu-btn" id="mobile-toggle" aria-label="Toggle Navigation">
           <span></span>
           <span></span>
           <span></span>
         </button>
-
-        <!-- Cyber Glass Dropdown Menu (Contains Theme, SFX, and Mobile Nav) -->
-        <div class="nav-menu-dropdown" id="nav-menu-dropdown">
-          <div class="menu-dropdown-header">
-            <span class="menu-dropdown-tag">HUD CONTROLS</span>
-          </div>
-
-          <div class="menu-controls-group">
-            <!-- Theme Studio Button -->
-            <button class="menu-action-item" id="theme-settings-btn" title="Customize HUD Theme">
-              <div class="menu-item-left">
-                <span class="theme-palette-icon"></span>
-                <span class="menu-item-title">HUD Theme Studio</span>
-              </div>
-              <span class="menu-item-badge" id="theme-btn-label">THEME</span>
-            </button>
-
-            <!-- SFX Audio Toggle Button -->
-            <button class="menu-action-item" id="sound-toggle" title="Toggle UI sound effects">
-              <div class="menu-item-left">
-                <span class="sound-indicator"></span>
-                <span class="menu-item-title">Audio SFX</span>
-              </div>
-              <span class="menu-item-badge" id="sound-status-text">SFX: ON</span>
-            </button>
-          </div>
-
-          <!-- Mobile Section Navigation (shown on small screens) -->
-          <div class="menu-mobile-links">
-            <div class="menu-divider"></div>
-            <a href="#home" class="dropdown-nav-link">Home</a>
-            <a href="#about" class="dropdown-nav-link">About</a>
-            <a href="#skills" class="dropdown-nav-link">Skills</a>
-            <a href="#projects" class="dropdown-nav-link">Projects</a>
-            <a href="#experience" class="dropdown-nav-link">Experience</a>
-            <a href="#process" class="dropdown-nav-link">Process</a>
-            <a href="#resume" class="dropdown-nav-link">Resume</a>
-            <a href="#contact" class="dropdown-nav-link">Contact</a>
-          </div>
-        </div>
       </div>
     </div>
   </header>
 
   <!-- ==========================================================================
-       HERO LANDING SECTION
+       HERO SECTION
        ========================================================================== -->
   <section class="hero-section" id="home">
-    <div class="hero-glow-1"></div>
-    <div class="hero-glow-2"></div>
-
     <div class="container hero-grid">
       <!-- Left Content -->
       <div class="hero-content">
         <div class="hero-badge">
-          <span class="pulse-ring"></span>
-          <span class="engine-pill">
-            <span class="badge-highlight">UNITY GAME DEVELOPER</span>
-            <span class="badge-separator">•</span>
-            <span class="badge-role">2D & 3D SPECIALIST</span>
-          </span>
+          <span class="badge-dot"></span>
+          <span class="badge-text">UNITY GAME DEVELOPER â€¢ 2D & 3D SPECIALIST</span>
         </div>
 
-        <h1 class="hero-title-main">AMAL THOMAS</h1>
+        <h1 class="hero-title">
+          <span class="glow-name">AMAL THOMAS</span>
+        </h1>
         <div class="hero-tagline">"Building Worlds. Creating Experiences."</div>
 
         <p class="hero-bio">
@@ -177,13 +1333,13 @@
 
         <div class="hero-buttons">
           <a href="#projects" class="btn btn-primary">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
               <polygon points="5 3 19 12 5 21 5 3"></polygon>
             </svg>
             View My Projects
           </a>
-          <a href="assets/Amal_Thomas_CV.pdf" download="Amal_Thomas_CV.pdf" class="btn btn-secondary" id="hero-download-cv">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <a href="assets/Amal_Thomas_CV.pdf" download="Amal_Thomas_CV.pdf" class="btn btn-outline" id="download-cv-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
               <polyline points="7 10 12 15 17 10"></polyline>
               <line x1="12" y1="15" x2="12" y2="3"></line>
@@ -191,7 +1347,7 @@
             Download CV (PDF)
           </a>
           <a href="#contact" class="btn btn-outline">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <rect x="2" y="4" width="20" height="16" rx="2"></rect>
               <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L1 7"></path>
             </svg>
@@ -199,49 +1355,47 @@
           </a>
         </div>
 
-        <!-- Quick Metrics Display -->
         <div class="hero-metrics">
           <div class="metric-item">
-            <span class="metric-value cyan">10+</span>
+            <span class="metric-value">10+</span>
             <span class="metric-label">Games & Prototypes</span>
           </div>
           <div class="metric-item">
-            <span class="metric-value purple">2+ YRS</span>
+            <span class="metric-value">2+ YRS</span>
             <span class="metric-label">Experience</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-value">60 FPS</span>
+            <span class="metric-label">Performance Target</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-value">C# / Unity</span>
+            <span class="metric-label">Core Engine Mastery</span>
           </div>
         </div>
       </div>
 
-      <!-- Right 3D Visual Frame (Cyber Geometric Shield) -->
-      <div class="hero-visual-wrapper hero-shield-wrapper" id="hero-visual-wrapper">
-        <!-- Ambient Atmospheric Soft Backlight -->
-        <div class="shield-ambient-aura" aria-hidden="true"></div>
-
-        <!-- Geometric SVG Energy Track Lines (Rotating Concentric Hex/Shield Rings) -->
-        <svg class="shield-svg-tracks" viewBox="0 0 500 500" aria-hidden="true">
-          <polygon class="svg-shield-outer" points="250,16 465,135 465,365 250,484 35,365 35,135" />
-          <polygon class="svg-shield-inner" points="250,38 442,148 442,352 250,462 58,352 58,148" />
-        </svg>
-
-        <!-- Main Cyber Shield Frame Card -->
-        <div class="hero-shield-card" id="hero-visual-card">
-          <!-- Pure Photo Container with Shield Polygon Cutout -->
-          <div class="shield-photo-viewport">
-            <img src="assets/images/amal-thomas.jpg" alt="Amal Thomas - Unity Game Developer" class="shield-portrait-img" width="480" height="520">
-            <!-- Subtle Cinematic Film Tone Vignette & Holographic Rim -->
-            <div class="shield-tone-vignette" aria-hidden="true"></div>
-            <div class="shield-inner-glow" aria-hidden="true"></div>
+      <!-- Right Visual Frame -->
+      <div class="hero-visual">
+        <div class="cyber-frame-outer">
+          <div class="cyber-frame-inner">
+            <img src="assets/images/amal-thomas.jpg" alt="Amal Thomas - Unity Game Developer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="avatar-fallback">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+              <span style="font-family: var(--font-heading); font-size: 1.2rem; font-weight: 700;">AMAL THOMAS</span>
+              <span style="font-size: 0.85rem; color: var(--text-muted);">Unity Developer</span>
+            </div>
           </div>
-        </div>
-
-        <!-- Floating Architecture Chip (Bottom Right) -->
-        <div class="hero-float-chip chip-bottom-right" title="Game Developer">
-          <div class="chip-icon">🎮</div>
-          <div class="chip-content">
-            <span class="chip-title">GAME DEVELOPER</span>
-            <span class="chip-sub">Unity 2D & 3D</span>
+          <div class="hero-badge-overlay">
+            <span class="badge-icon-game">ðŸŽ®</span>
+            <div>
+              <span class="badge-info-top">GAME DEVELOPER</span>
+              <span class="badge-info-sub">Unity 2D & 3D Specialist</span>
+            </div>
           </div>
-          <div class="chip-badge-tech">C#</div>
         </div>
       </div>
     </div>
@@ -250,161 +1404,43 @@
   <!-- ==========================================================================
        ABOUT ME SECTION
        ========================================================================== -->
-  <section class="section about-section" id="about">
+  <section class="section" id="about">
     <div class="container">
       <div class="section-header">
         <span class="section-tag">Profile & Philosophy</span>
         <h2 class="section-title">ENGINEERING GAMEPLAY EXPERIENCES</h2>
-        <p class="section-description about-hero-lead">
-          <span class="hl-cyan">Passionate Game Developer</span> with <span class="hl-badge">2+ YEARS</span> of hands-on experience building <span class="hl-white">scalable, reusable 2D and 3D game systems</span> using <span class="hl-cyan">Unity</span> and <span class="hl-purple">C#</span>.
-        </p>
+        <p class="section-desc">Passionate Game Developer with 2+ years of hands-on experience building scalable, reusable 2D and 3D game systems using Unity and C#.</p>
       </div>
 
-      <div class="about-grid">
-        <!-- Left Column: Story & Specializations -->
-        <div class="about-text-content">
-          <p>
-            Hello! I'm <strong>Amal Thomas</strong>, a Unity Game Developer based in Ernakulam, Kerala. Over the past 2+ years, I have engineered diverse games spanning strategy, simulation, multiplayer, arcade, and action genres.
-          </p>
-          <p>
-            My core expertise lies in <strong>gameplay programming, real-time multiplayer networking (Photon, Netcode), AI decision systems (Minimax, Heuristics), UI architecture with DOTween, and runtime performance optimization</strong>. I take pride in writing clean, modular C# code utilizing ScriptableObjects, Object Pooling, and Coroutines that keep gameplay buttery smooth at 60+ FPS.
-          </p>
-
-          <!-- Core Competencies Grid -->
-          <div class="about-highlights-grid">
-            <div class="about-highlight-card">
-              <div class="highlight-icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path>
-                  <polyline points="14 2 14 8 20 8"></polyline>
-                </svg>
-              </div>
-              <h3 class="highlight-title">Unity 2D & 3D Development</h3>
-              <p class="highlight-desc">Developing varied gameplay systems, character controllers, procedural physics, and interactive mechanics.</p>
-            </div>
-
-            <div class="about-highlight-card">
-              <div class="highlight-icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <circle cx="12" cy="5" r="3"></circle>
-                  <line x1="12" y1="8" x2="12" y2="12"></line>
-                  <circle cx="5" cy="19" r="3"></circle>
-                  <circle cx="19" cy="19" r="3"></circle>
-                  <line x1="5" y1="16" x2="12" y2="12"></line>
-                  <line x1="19" y1="16" x2="12" y2="12"></line>
-                </svg>
-              </div>
-              <h3 class="highlight-title">Multiplayer & Server-Auth</h3>
-              <p class="highlight-desc">Photon and Netcode real-time synchronization with server-authoritative logic to prevent cheating and desyncs.</p>
-            </div>
-
-            <div class="about-highlight-card">
-              <div class="highlight-icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <line x1="22" y1="12" x2="18" y2="12"></line>
-                  <line x1="6" y1="12" x2="2" y2="12"></line>
-                  <line x1="12" y1="6" x2="12" y2="2"></line>
-                  <line x1="12" y1="22" x2="12" y2="18"></line>
-                </svg>
-              </div>
-              <h3 class="highlight-title">Game AI & Logic Systems</h3>
-              <p class="highlight-desc">Minimax decision trees, heuristic-based AI, and constraint-based state validation for procedural systems.</p>
-            </div>
-
-            <div class="about-highlight-card">
-              <div class="highlight-icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-                </svg>
-              </div>
-              <h3 class="highlight-title">Optimization & Object Pooling</h3>
-              <p class="highlight-desc">Diagnosing UI bottlenecks, eliminating GC memory spikes, and optimizing update cycles for steady 60 FPS.</p>
-            </div>
+      <div class="skills-grid" style="margin-bottom: 3rem;">
+        <div class="skill-card">
+          <div class="skill-card-header">
+            <div class="skill-card-icon">âš¡</div>
+            <h3 class="skill-card-title">Gameplay Systems</h3>
           </div>
+          <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6;">
+            Deep experience engineering custom vehicle physics, soundwave decibel analyzers, infinite-undo command patterns, grid-based tactics, and responsive state machines that make gameplay snappy and fun.
+          </p>
         </div>
 
-        <!-- Right Column: Interactive Game Dev Stats Dashboard -->
-        <div class="about-stats-panel">
-          <div class="panel-header">
-            <div>
-              <h3 class="panel-title">TECHNICAL BENCHMARKS</h3>
-              <div class="panel-subtitle">CORE COMPETENCIES & PRODUCTION SKILLS</div>
-            </div>
-            <span class="hud-status-badge">VERIFIED</span>
+        <div class="skill-card">
+          <div class="skill-card-header">
+            <div class="skill-card-icon">ðŸŒ</div>
+            <h3 class="skill-card-title">Multiplayer & AI</h3>
           </div>
+          <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6;">
+            Implementing real-time networked gameplay via Photon PUN2, room lobbies, synchronizing physics states, alongside tactical AI utilizing Minimax heuristics and A* pathfinding.
+          </p>
+        </div>
 
-          <div class="stats-bars-list">
-            <div class="stat-bar-item">
-              <div class="stat-bar-labels">
-                <span class="stat-name">Unity (2D & 3D Development)</span>
-                <span class="stat-percent">96%</span>
-              </div>
-              <div class="stat-track">
-                <div class="stat-fill" data-level="96%"></div>
-              </div>
-            </div>
-
-            <div class="stat-bar-item">
-              <div class="stat-bar-labels">
-                <span class="stat-name">C# Programming & OOPs Architecture</span>
-                <span class="stat-percent">95%</span>
-              </div>
-              <div class="stat-track">
-                <div class="stat-fill" data-level="95%"></div>
-              </div>
-            </div>
-
-            <div class="stat-bar-item">
-              <div class="stat-bar-labels">
-                <span class="stat-name">Multiplayer Networking (Photon, Mirror)</span>
-                <span class="stat-percent">90%</span>
-              </div>
-              <div class="stat-track">
-                <div class="stat-fill" data-level="90%"></div>
-              </div>
-            </div>
-
-            <div class="stat-bar-item">
-              <div class="stat-bar-labels">
-                <span class="stat-name">Object Pooling & GC Optimization</span>
-                <span class="stat-percent">95%</span>
-              </div>
-              <div class="stat-track">
-                <div class="stat-fill" data-level="95%"></div>
-              </div>
-            </div>
-
-            <div class="stat-bar-item">
-              <div class="stat-bar-labels">
-                <span class="stat-name">ScriptableObjects & Coroutines</span>
-                <span class="stat-percent">94%</span>
-              </div>
-              <div class="stat-track">
-                <div class="stat-fill" data-level="94%"></div>
-              </div>
-            </div>
-
-            <div class="stat-bar-item">
-              <div class="stat-bar-labels">
-                <span class="stat-name">Unity UI & DOTween Polish</span>
-                <span class="stat-percent">92%</span>
-              </div>
-              <div class="stat-track">
-                <div class="stat-fill" data-level="92%"></div>
-              </div>
-            </div>
-
-            <div class="stat-bar-item">
-              <div class="stat-bar-labels">
-                <span class="stat-name">Debugging & Profiling (Unity Profiler)</span>
-                <span class="stat-percent">91%</span>
-              </div>
-              <div class="stat-track">
-                <div class="stat-fill" data-level="91%"></div>
-              </div>
-            </div>
+        <div class="skill-card">
+          <div class="skill-card-header">
+            <div class="skill-card-icon">ðŸš€</div>
+            <h3 class="skill-card-title">Performance & Polish</h3>
           </div>
+          <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6;">
+            Optimized for locked 60 FPS on mobile hardware. Proficient with Unity Profiler, Object Pooling, memory allocation minimization, and dynamic UI animations via DOTween.
+          </p>
         </div>
       </div>
     </div>
@@ -413,263 +1449,146 @@
   <!-- ==========================================================================
        SKILLS SECTION
        ========================================================================== -->
-  <section class="section skills-section" id="skills">
+  <section class="section" id="skills" style="background: rgba(8, 14, 28, 0.4);">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag">Arsenal & Tooling</span>
-        <h2 class="section-title">TECHNICAL SKILLS & PROFICIENCY</h2>
-        <p class="section-description">
-          Core game engines, programming languages, gameplay subsystems, architecture patterns, and production toolchains.
-        </p>
+        <span class="section-tag">Technical Arsenal</span>
+        <h2 class="section-title">CORE SKILLS & TECHNOLOGIES</h2>
+        <p class="section-desc">Tools, programming languages, and specialized game architectures I leverage daily.</p>
       </div>
 
-      <!-- Category Filter Tabs -->
-      <div class="skills-tabs">
-        <button class="skills-tab-btn active" data-category="engines">Game Engines</button>
-        <button class="skills-tab-btn" data-category="programming">Programming & Architecture</button>
-        <button class="skills-tab-btn" data-category="gameplaySystems">Game Systems & Optimization</button>
-        <button class="skills-tab-btn" data-category="tools">Tools & Workflow</button>
-        <button class="skills-tab-btn" data-category="all">View All</button>
-      </div>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="skill-card-header">
+            <div class="skill-card-icon">ðŸŽ¯</div>
+            <h3 class="skill-card-title">Engine & Languages</h3>
+          </div>
+          <ul class="skill-list">
+            <li>Unity 2D & 3D (URP / Built-in)</li>
+            <li>C# (Advanced OOP, Async/Coroutines)</li>
+            <li>HLSL & Shader Graph</li>
+            <li>Git & Version Control</li>
+          </ul>
+        </div>
 
-      <!-- Skills Cards Grid Container (Rendered via JS from RESUME_DATA) -->
-      <div class="skills-grid" id="skills-grid-container">
-        <!-- Rendered dynamically -->
+        <div class="skill-card">
+          <div class="skill-card-header">
+            <div class="skill-card-icon">ðŸ•¹ï¸</div>
+            <h3 class="skill-card-title">Gameplay Systems</h3>
+          </div>
+          <ul class="skill-list">
+            <li>Custom 2D/3D Rigidbody Physics</li>
+            <li>Microphone Audio DSP & Decibel Analysis</li>
+            <li>Finite State Machines (FSM)</li>
+            <li>Command Pattern (Infinite Undo/Redo)</li>
+          </ul>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-card-header">
+            <div class="skill-card-icon">ðŸ“¡</div>
+            <h3 class="skill-card-title">Networking & AI</h3>
+          </div>
+          <ul class="skill-list">
+            <li>Photon PUN2 / Netcode</li>
+            <li>A* Pathfinding & NavMesh</li>
+            <li>Minimax & Heuristic Game AI</li>
+            <li>Lobby & Matchmaking Flow</li>
+          </ul>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-card-header">
+            <div class="skill-card-icon">âš¡</div>
+            <h3 class="skill-card-title">Optimization & UI</h3>
+          </div>
+          <ul class="skill-list">
+            <li>DOTween Dynamic UI & Juice</li>
+            <li>Object Pooling & Garbage Collection Care</li>
+            <li>Unity Profiler & Frame Debugger</li>
+            <li>Mobile (Android/iOS) & WebGL Build Pipeline</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- ==========================================================================
-       FEATURED PROJECTS SECTION
+       PROJECTS SECTION
        ========================================================================== -->
-  <section class="section projects-section" id="projects">
+  <section class="section" id="projects">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag">Portfolio Showcase</span>
-        <h2 class="section-title">FEATURED GAME PROJECTS</h2>
-        <p class="section-description">
-          Explore production titles across multiplayer, 2D/3D physics, tower defense, puzzle algorithms, and combat simulations.
-        </p>
+        <span class="section-tag">Featured Works</span>
+        <h2 class="section-title">GAMES & SIMULATIONS</h2>
+        <p class="section-desc">Explore 9 published titles, technical prototypes, and gameplay systems developed with Unity and C#.</p>
       </div>
 
-      <!-- Filter Bar -->
-      <div class="project-filters">
-        <button class="filter-btn active" data-filter="all">All Projects</button>
-        <button class="filter-btn" data-filter="unity">Unity</button>
-        <button class="filter-btn" data-filter="multiplayer">Multiplayer</button>
-        <button class="filter-btn" data-filter="2d">2D Games</button>
+      <!-- Filters -->
+      <div class="projects-filter-bar" id="project-filters">
+        <button class="filter-btn active" data-filter="all">All Projects (9)</button>
         <button class="filter-btn" data-filter="3d">3D Games</button>
-        <button class="filter-btn" data-filter="fps">FPS & Combat</button>
-        <button class="filter-btn" data-filter="simulation">Simulation & Strategy</button>
+        <button class="filter-btn" data-filter="2d">2D Games</button>
+        <button class="filter-btn" data-filter="racing">Racing & Physics</button>
+        <button class="filter-btn" data-filter="puzzle">Puzzle & Casual</button>
+        <button class="filter-btn" data-filter="action">Action & Combat</button>
       </div>
 
-      <!-- Projects Grid (Rendered via JS from PROJECTS_DATA) -->
+      <!-- Grid -->
       <div class="projects-grid" id="projects-grid">
-        <!-- Populated by main.js from PROJECTS_DATA -->
+        <!-- Rendered dynamically by JavaScript -->
       </div>
     </div>
   </section>
 
   <!-- ==========================================================================
-       GAMEPLAY VIDEO SIMULATOR MODAL
+       EXPERIENCE & RESUME SECTION
        ========================================================================== -->
-  <div class="video-modal-backdrop" id="video-modal" aria-hidden="true" role="dialog">
-    <div class="video-modal-box" data-lenis-prevent>
-        <div id="video-screen-blueprint" class="video-screen-blueprint"></div>
-        <img id="video-screen-img" src="" alt="Gameplay Preview" style="display:none;">
-        <div class="video-hud-overlay">
-          <div class="video-hud-top">
-            <div class="rec-badge">
-              <span class="rec-dot"></span> REC [60 FPS]
-            </div>
-            <div id="video-project-spec">ENGINE: ACTIVE | RESOLUTION: 4K UHD</div>
-          </div>
-          <div class="video-hud-center">
-            <div class="video-crosshair"></div>
-          </div>
-          <div class="video-hud-bottom" style="font-family: var(--font-code); font-size: 0.75rem; color: var(--neon-cyan);">
-            INTERACTIVE GAMEPLAY REPLAY • SOUND ACTIVE
-          </div>
-        </div>
-      </div>
-      <div class="video-controls-bar">
-        <div>
-          <h4 id="video-project-title" style="color: #fff; font-size: 1.1rem; margin-bottom: 2px;">Gameplay Video Preview</h4>
-          <span style="font-family: var(--font-code); font-size: 0.75rem; color: var(--neon-cyan);">High-fidelity simulation footage</span>
-        </div>
-        <button class="btn btn-outline" id="video-close-btn" style="padding: 0.5rem 1.2rem; font-size: 0.85rem;">
-          Close Preview
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- ==========================================================================
-       PROJECT DETAILS MODAL / DRAWER
-       ========================================================================== -->
-  <div class="modal-backdrop" id="project-details-modal" aria-hidden="true" role="dialog">
-    <div class="modal-window" data-lenis-prevent>
-      <button class="modal-close-btn" id="modal-close-btn" aria-label="Close project modal">&times;</button>
-      <div id="modal-dynamic-content">
-        <!-- Populated on click from PROJECTS_DATA -->
-      </div>
-    </div>
-  </div>
-
-  <!-- ==========================================================================
-       EXPERIENCE SECTION (TIMELINE)
-       ========================================================================== -->
-  <section class="section experience-section" id="experience">
+  <section class="section" id="experience" style="background: rgba(8, 14, 28, 0.4);">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag">Career History</span>
-        <h2 class="section-title">PROFESSIONAL EXPERIENCE</h2>
-        <p class="section-description">
-          Proven industry experience developing 2D/3D games, architecting multiplayer systems, and optimizing Unity runtimes.
-        </p>
+        <span class="section-tag">Career Milestones</span>
+        <h2 class="section-title">WORK EXPERIENCE</h2>
+        <p class="section-desc">My professional journey building production games and interactive systems.</p>
       </div>
 
-      <div class="timeline-container" id="experience-timeline-container">
-        <!-- Populated via main.js from RESUME_DATA.experience -->
-      </div>
-    </div>
-  </section>
-
-  <!-- ==========================================================================
-       GAME DEVELOPMENT PROCESS / WORKFLOW
-       ========================================================================== -->
-  <section class="section process-section" id="process">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">Production Pipeline</span>
-        <h2 class="section-title">HOW I BUILD GAMES</h2>
-        <p class="section-description">
-          A disciplined, battle-tested development cycle designed for iterative fun, rock-solid architecture, and reliable shipping.
-        </p>
-      </div>
-
-      <!-- 7 Steps Pipeline -->
-      <div class="process-pipeline" id="process-pipeline-steps">
-        <!-- Populated via main.js -->
-      </div>
-
-      <!-- Active Stage Deep-Dive Card -->
-      <div class="process-detail-box" id="process-active-detail">
-        <!-- Populated dynamically via main.js -->
-      </div>
-    </div>
-  </section>
-
-  <!-- ==========================================================================
-       RESUME SECTION
-       ========================================================================== -->
-  <section class="section resume-section" id="resume">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">Credentials & Background</span>
-        <h2 class="section-title">CURRICULUM VITAE</h2>
-        <p class="section-description">
-          Verified industry credentials, education, certifications, and key technical accomplishments.
-        </p>
-      </div>
-
-      <div class="resume-wrapper">
-        <div class="resume-top-bar">
-          <div class="resume-candidate-meta">
-            <h3>Amal Thomas</h3>
-            <p>Unity Game Developer • Ernakulam, Kerala, India 683574 • +91 8848011784</p>
+      <div style="max-width: 860px; margin: 0 auto;">
+        <div class="experience-card">
+          <div class="exp-header">
+            <div class="exp-role">Unity Game Developer</div>
+            <div class="exp-period">2024 - Present</div>
           </div>
-          <div class="resume-actions-group">
-            <a href="assets/Amal_Thomas_CV.pdf" download="Amal_Thomas_CV.pdf" class="btn btn-primary" id="download-cv-btn" title="Download Amal Thomas CV PDF">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                <polyline points="7 10 12 15 17 10"></polyline>
-                <line x1="12" y1="15" x2="12" y2="3"></line>
-              </svg>
-              Download CV (PDF)
-            </a>
-            <button class="btn btn-secondary" id="print-cv-btn" title="Print Amal Thomas CV">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="6 9 6 2 18 2 18 9"></polyline>
-                <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
-                <rect x="6" y="14" width="12" height="8"></rect>
-              </svg>
-              Print CV
-            </button>
-            <a href="assets/Amal_Thomas_CV.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline" id="view-cv-pdf-btn" title="Open PDF in new tab">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                <polyline points="15 3 21 3 21 9"></polyline>
-                <line x1="10" y1="14" x2="21" y2="3"></line>
-              </svg>
-              View PDF
-            </a>
-            <button class="btn btn-outline" id="toggle-pdf-preview-btn" title="Toggle embedded PDF viewer">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                <circle cx="12" cy="12" r="3"></circle>
-              </svg>
-              Preview Document
-            </button>
-          </div>
+          <div class="exp-company">Independent Game Studio & Production Titles â€¢ Ernakulam, Kerala</div>
+          <ul class="exp-bullets">
+            <li>Designed, programmed, and published innovative titles including <strong>Cars of Voice</strong> (v2.6 on Google Play), engineering custom microphone decibel analyzers and vehicle physics engines.</li>
+            <li>Architected complete game codebases adhering to Clean Code, SOLID principles, ScriptableObject data-driven architectures, and the Command Pattern.</li>
+            <li>Created engaging 2D and 3D gameplay systems spanning tower defense A* wave pathfinding, flight physics simulators, and tactical turn-based battleship heuristics.</li>
+            <li>Optimized frame rates, memory allocations, draw calls, and asset loading to consistently achieve locked 60+ FPS across Android mobile hardware.</li>
+          </ul>
         </div>
 
-        <!-- Embedded Original PDF Viewer (Toggled on Demand) -->
-        <div id="cv-pdf-preview-container" class="cv-pdf-preview-box" style="display: none; margin-bottom: 2.5rem;">
-          <div class="pdf-preview-header">
-            <span class="pdf-tag">ORIGINAL CV DOCUMENT • AMAL THOMAS</span>
-            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-              <a href="assets/Amal_Thomas_CV.pdf" download="Amal_Thomas_CV.pdf" class="btn btn-primary" style="padding: 0.35rem 0.8rem; font-size: 0.78rem;">Download PDF</a>
-              <button class="btn btn-secondary" onclick="printCvDocument()" style="padding: 0.35rem 0.8rem; font-size: 0.78rem;">Print</button>
-              <button class="btn btn-outline" id="close-pdf-preview-btn" style="padding: 0.35rem 0.8rem; font-size: 0.78rem;">&times; Close</button>
-            </div>
+        <div class="experience-card">
+          <div class="exp-header">
+            <div class="exp-role">Junior Game Programmer / Prototyping</div>
+            <div class="exp-period">2022 - 2024</div>
           </div>
-          <iframe id="cv-pdf-iframe" src="assets/Amal_Thomas_CV.pdf" width="100%" height="750px" style="border: 1px solid var(--border-medium); border-radius: var(--radius-sm); background: #ffffff;"></iframe>
+          <div class="exp-company">Game Development Training & Interactive Projects</div>
+          <ul class="exp-bullets">
+            <li>Built over 10+ playable game prototypes exploring various genres: casual puzzle, card engines, FPS mechanics, and arcade racers.</li>
+            <li>Mastered multiplayer networking integration utilizing Photon PUN2 for real-time room lobbies and player synchronization.</li>
+            <li>Crafted intuitive, responsive UI layouts with celebratory particle bursts and tween sequences utilizing DOTween.</li>
+          </ul>
         </div>
 
-        <div class="resume-grid">
-          <!-- Left Column: Education & Certifications -->
-          <div class="resume-col">
-            <div class="resume-col-sec">
-              <h4 class="resume-sec-heading">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
-                  <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
-                </svg>
-                Education
-              </h4>
-              <div id="resume-edu-list"></div>
-            </div>
-
-            <div class="resume-col-sec">
-              <h4 class="resume-sec-heading">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <circle cx="12" cy="8" r="7"></circle>
-                  <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
-                </svg>
-                Certification
-              </h4>
-              <div id="resume-cert-list"></div>
-            </div>
-          </div>
-
-          <!-- Right Column: Key Achievements -->
-          <div class="resume-col">
-            <div class="resume-col-sec">
-              <h4 class="resume-sec-heading">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path>
-                  <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path>
-                  <path d="M4 22h16"></path>
-                  <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path>
-                  <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path>
-                  <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path>
-                </svg>
-                Key Achievements
-              </h4>
-              <div id="resume-achieve-list"></div>
-            </div>
-          </div>
+        <div style="text-align: center; margin-top: 2.5rem;">
+          <a href="assets/Amal_Thomas_CV.pdf" download="Amal_Thomas_CV.pdf" class="btn btn-primary" style="padding: 1rem 2.2rem;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            Download Complete Resume (PDF)
+          </a>
         </div>
       </div>
     </div>
@@ -678,87 +1597,66 @@
   <!-- ==========================================================================
        CONTACT SECTION
        ========================================================================== -->
-  <section class="section contact-section" id="contact">
+  <section class="section" id="contact">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag">Direct Comms</span>
-        <h2 class="section-title">LET'S BUILD SOMETHING AWESOME</h2>
-        <p class="section-description">
-          Looking for a Unity game developer, gameplay programmer, or performance consultant? Send a message or get in touch directly.
-        </p>
+        <span class="section-tag">Let's Connect</span>
+        <h2 class="section-title">GET IN TOUCH</h2>
+        <p class="section-desc">Have an exciting game project, full-time opportunity, or want to collaborate? I'd love to hear from you.</p>
       </div>
 
       <div class="contact-grid">
-        <!-- Left: Contact Information & Socials -->
-        <div class="contact-info-panel">
-          <h3>START A CONVERSATION</h3>
-          <p>
-            Whether you have an upcoming game project, need multiplayer networking architecture, or want to collaborate on innovative interactive gameplay, feel free to reach out.
-          </p>
-
-          <div class="contact-channel-list">
-            <div class="contact-channel-item">
-              <div class="channel-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <!-- Contact channels -->
+        <div>
+          <div class="contact-info-list">
+            <a href="mailto:amalthomaz88@gmail.com" class="contact-channel">
+              <div class="channel-icon-box">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
                   <polyline points="22,6 12,13 2,6"></polyline>
                 </svg>
               </div>
               <div>
                 <div class="channel-title">Direct Email</div>
-                <div class="channel-value"><a href="mailto:amalthomaz88@gmail.com" style="color: var(--neon-cyan);">amalthomaz88@gmail.com</a></div>
+                <div class="channel-val">amalthomaz88@gmail.com</div>
               </div>
-            </div>
+            </a>
 
-            <div class="contact-channel-item">
-              <div class="channel-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <a href="tel:+918848011784" class="contact-channel">
+              <div class="channel-icon-box">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
                 </svg>
               </div>
               <div>
                 <div class="channel-title">Phone / WhatsApp</div>
-                <div class="channel-value"><a href="tel:+918848011784" style="color: var(--neon-cyan);">+91 8848011784</a></div>
+                <div class="channel-val">+91 8848011784</div>
               </div>
-            </div>
+            </a>
 
-            <div class="contact-channel-item">
-              <div class="channel-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <div class="contact-channel">
+              <div class="channel-icon-box">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                   <circle cx="12" cy="10" r="3"></circle>
                 </svg>
               </div>
               <div>
                 <div class="channel-title">Location</div>
-                <div class="channel-value">Ernakulam, Kerala, India 683574</div>
-              </div>
-            </div>
-
-            <div class="contact-channel-item">
-              <div class="channel-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <polyline points="12 6 12 12 16 14"></polyline>
-                </svg>
-              </div>
-              <div>
-                <div class="channel-title">Availability</div>
-                <div class="channel-value" style="color: var(--neon-emerald);">Open for Full-Time & Exciting Game Projects</div>
+                <div class="channel-val">Ernakulam, Kerala, India</div>
               </div>
             </div>
           </div>
 
-          <!-- Social Links Grid -->
-          <div class="social-links-grid">
-            <a href="https://github.com/amalthomaz88-sudo" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="GitHub Profile">
+          <!-- Social Buttons -->
+          <div class="social-row">
+            <a href="https://github.com/amalthomaz88-sudo" target="_blank" rel="noopener noreferrer" class="btn-social">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
               </svg>
               GitHub
             </a>
-
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="LinkedIn Profile">
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="btn-social">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
                 <rect x="2" y="9" width="4" height="12"></rect>
@@ -766,58 +1664,32 @@
               </svg>
               LinkedIn
             </a>
-
-            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="YouTube Channel">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path>
-                <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
-              </svg>
-              YouTube
-            </a>
-
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Instagram Profile">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-              </svg>
-              Instagram
-            </a>
           </div>
         </div>
 
-        <!-- Right: Modern Form Panel -->
-        <div class="contact-form-panel">
-          <form id="contact-form" class="contact-form">
-            <div id="contact-form-status" class="form-status"></div>
-
+        <!-- Quick Form -->
+        <div class="contact-form-box">
+          <form id="contact-form" onsubmit="handleFormSubmit(event)">
             <div class="form-group">
-              <label for="contact-name" class="form-label">Your Name</label>
-              <input type="text" id="contact-name" class="form-input" placeholder="e.g. John Doe / Studio Recruiter" required>
+              <label class="form-label" for="form-name">Your Name</label>
+              <input type="text" id="form-name" class="form-input" placeholder="e.g. Alex Miller" required>
             </div>
-
             <div class="form-group">
-              <label for="contact-email" class="form-label">Email Address</label>
-              <input type="email" id="contact-email" class="form-input" placeholder="e.g. recruiter@studio.com" required>
+              <label class="form-label" for="form-email">Your Email</label>
+              <input type="email" id="form-email" class="form-input" placeholder="e.g. alex@studio.com" required>
             </div>
-
             <div class="form-group">
-              <label for="contact-subject" class="form-label">Subject</label>
-              <input type="text" id="contact-subject" class="form-input" placeholder="e.g. Unity Game Developer Opportunity / Project Inquiry" required>
+              <label class="form-label" for="form-message">Message</label>
+              <textarea id="form-message" class="form-textarea" placeholder="Describe your game idea, studio role, or project..." required></textarea>
             </div>
-
-            <div class="form-group">
-              <label for="contact-message" class="form-label">Message</label>
-              <textarea id="contact-message" class="form-textarea" placeholder="Describe your game project, requirements, or opportunity..." required></textarea>
-            </div>
-
-            <button type="submit" id="contact-submit-btn" class="btn btn-primary" style="width: 100%; margin-top: 0.5rem;">
+            <button type="submit" class="btn btn-primary" style="width: 100%;" id="form-submit-btn">
+              <span>Send Message</span>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <line x1="22" y1="2" x2="11" y2="13"></line>
                 <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
               </svg>
-              Send Message
             </button>
+            <div id="form-feedback" style="display: none; margin-top: 1rem; padding: 0.85rem; border-radius: var(--radius-sm); font-size: 0.9rem; text-align: center;"></div>
           </form>
         </div>
       </div>
@@ -825,232 +1697,75 @@
   </section>
 
   <!-- ==========================================================================
-       THEME SETTINGS MODAL / HUD CUSTOMIZER
+       FOOTER
        ========================================================================== -->
-  <div class="theme-modal-backdrop" id="theme-modal" aria-hidden="true" role="dialog">
-    <div class="theme-modal-window" data-lenis-prevent>
-      <div class="theme-modal-header">
-        <h3 class="theme-modal-title">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="10"></circle>
-            <path d="M12 2a10 10 0 0 0-4 19.18V18a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v3.18A10 10 0 0 0 12 2z"></path>
-            <circle cx="8.5" cy="8.5" r="1.5" fill="currentColor"></circle>
-            <circle cx="15.5" cy="8.5" r="1.5" fill="currentColor"></circle>
-          </svg>
-          HUD THEME CALIBRATION
-        </h3>
-        <button class="modal-close-btn" id="theme-modal-close" style="position: static;" aria-label="Close theme modal">&times;</button>
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 <strong>Amal Thomas</strong>. Professional Unity Game Developer. Built for <a href="https://github.com/amalthomaz88-sudo" target="_blank">Unity 2D & 3D</a>.</p>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       PROJECT DETAILS MODAL
+       ========================================================================== -->
+  <div class="modal-overlay" id="project-modal" aria-hidden="true">
+    <div class="modal-dialog">
+      <button class="modal-close" id="modal-close-btn" aria-label="Close dialog">&times;</button>
+      <div class="modal-content-inner" id="modal-body-content">
+        <!-- Rendered dynamically -->
       </div>
-      <p class="theme-modal-sub">CUSTOMIZE HUD DISPLAY & ATMOSPHERIC ENVIRONMENT</p>
+    </div>
+  </div>
 
-      <!-- Segmented HUD Settings Tabs -->
-      <div class="hud-settings-tabs">
-        <button class="hud-tab-btn active" data-tab="themes" id="tab-btn-themes">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="10"></circle>
-            <path d="M12 2a10 10 0 0 0-4 19.18V18a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v3.18A10 10 0 0 0 12 2z"></path>
-          </svg>
-          COLOR THEMES (5)
-        </button>
-        <button class="hud-tab-btn" data-tab="backgrounds" id="tab-btn-backgrounds">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-            <circle cx="8.5" cy="8.5" r="1.5"></circle>
-            <polyline points="21 15 16 10 5 21"></polyline>
-          </svg>
-          BACKGROUND STYLES (5)
-        </button>
-      </div>
-
-      <!-- Tab Pane 1: 5 Dark Gaming Color Themes -->
-      <div class="hud-tab-pane active" id="pane-themes">
-        <div class="theme-cards-grid" id="theme-options-list">
-          <!-- 1. Cyber Blue (1st Theme & Default) -->
-          <div class="theme-option-card active" data-theme-key="cyber-blue">
-            <div class="theme-card-left">
-              <div class="theme-swatches-preview">
-                <span class="theme-swatch-dot primary" style="background: #1d72fe;"></span>
-                <span class="theme-swatch-dot secondary" style="background: #00d4ff;"></span>
-              </div>
-              <div class="theme-info-box">
-                <h4>CYBER BLUE</h4>
-                <p>Default Gaming • Electric Cobalt Blue & Icy Azure</p>
-              </div>
+  <!-- ==========================================================================
+       THEME STUDIO MODAL
+       ========================================================================== -->
+  <div class="modal-overlay" id="theme-modal" aria-hidden="true">
+    <div class="modal-dialog" style="max-width: 580px;">
+      <button class="modal-close" id="theme-modal-close-btn">&times;</button>
+      <div class="modal-content-inner">
+        <h3 class="modal-title">HUD THEME STUDIO</h3>
+        <p class="modal-subtitle">Select a cyber color scheme for your portfolio view</p>
+        
+        <div class="themes-grid">
+          <div class="theme-card-option active" data-set-theme="cyber-blue">
+            <div class="theme-preview-dot" style="background: linear-gradient(135deg, #00f0ff, #1d72fe);"></div>
+            <div>
+              <div style="font-weight: 700; font-size: 0.95rem;">Cyber Blue</div>
+              <div style="font-size: 0.75rem; color: var(--text-muted);">Default High-Tech</div>
             </div>
-            <span class="theme-status-tag">ACTIVE</span>
           </div>
 
-          <!-- 2. Cyber Cyan -->
-          <div class="theme-option-card" data-theme-key="cyber-cyan">
-            <div class="theme-card-left">
-              <div class="theme-swatches-preview">
-                <span class="theme-swatch-dot primary" style="background: #00f0ff;"></span>
-                <span class="theme-swatch-dot secondary" style="background: #a855f7;"></span>
-              </div>
-              <div class="theme-info-box">
-                <h4>CYBER CYAN</h4>
-                <p>Sci-Fi Neon • Electric Cyan & Plasma Purple</p>
-              </div>
+          <div class="theme-card-option" data-set-theme="cyber-cyan">
+            <div class="theme-preview-dot" style="background: linear-gradient(135deg, #00f0ff, #a855f7);"></div>
+            <div>
+              <div style="font-weight: 700; font-size: 0.95rem;">Neon Cyan</div>
+              <div style="font-size: 0.75rem; color: var(--text-muted);">Cyan & Electric Purple</div>
             </div>
-            <span class="theme-status-tag">SELECT</span>
           </div>
 
-          <!-- 3. Emerald Matrix -->
-          <div class="theme-option-card" data-theme-key="emerald-matrix">
-            <div class="theme-card-left">
-              <div class="theme-swatches-preview">
-                <span class="theme-swatch-dot primary" style="background: #00ff88;"></span>
-                <span class="theme-swatch-dot secondary" style="background: #10b981;"></span>
-              </div>
-              <div class="theme-info-box">
-                <h4>EMERALD MATRIX</h4>
-                <p>Matrix Cyber Green & Bio Emerald</p>
-              </div>
+          <div class="theme-card-option" data-set-theme="emerald-matrix">
+            <div class="theme-preview-dot" style="background: linear-gradient(135deg, #00ff88, #10b981);"></div>
+            <div>
+              <div style="font-weight: 700; font-size: 0.95rem;">Emerald Matrix</div>
+              <div style="font-size: 0.75rem; color: var(--text-muted);">Tactical Matrix Green</div>
             </div>
-            <span class="theme-status-tag">SELECT</span>
           </div>
 
-          <!-- 4. Crimson Fury -->
-          <div class="theme-option-card" data-theme-key="crimson-fury">
-            <div class="theme-card-left">
-              <div class="theme-swatches-preview">
-                <span class="theme-swatch-dot primary" style="background: #ff2a5f;"></span>
-                <span class="theme-swatch-dot secondary" style="background: #ff5500;"></span>
-              </div>
-              <div class="theme-info-box">
-                <h4>CRIMSON FURY</h4>
-                <p>Cyberpunk Red • Sith Magma Core & Blazing Ember</p>
-              </div>
+          <div class="theme-card-option" data-set-theme="crimson-neon">
+            <div class="theme-preview-dot" style="background: linear-gradient(135deg, #ff2a5f, #f43f5e);"></div>
+            <div>
+              <div style="font-weight: 700; font-size: 0.95rem;">Crimson Neon</div>
+              <div style="font-size: 0.75rem; color: var(--text-muted);">Cyberpunk Red Alert</div>
             </div>
-            <span class="theme-status-tag">SELECT</span>
           </div>
 
-          <!-- 5. Royal Void -->
-          <div class="theme-option-card" data-theme-key="royal-void">
-            <div class="theme-card-left">
-              <div class="theme-swatches-preview">
-                <span class="theme-swatch-dot primary" style="background: #c042ff;"></span>
-                <span class="theme-swatch-dot secondary" style="background: #00e5ff;"></span>
-              </div>
-              <div class="theme-info-box">
-                <h4>ROYAL VOID</h4>
-                <p>Deep Space Amethyst • Cosmic Violet & Starlight</p>
-              </div>
+          <div class="theme-card-option" data-set-theme="synthwave">
+            <div class="theme-preview-dot" style="background: linear-gradient(135deg, #d946ef, #00f0ff);"></div>
+            <div>
+              <div style="font-weight: 700; font-size: 0.95rem;">Synthwave</div>
+              <div style="font-size: 0.75rem; color: var(--text-muted);">Retro Neon Glow</div>
             </div>
-            <span class="theme-status-tag">SELECT</span>
-          </div>
-
-          <!-- 6. Solar Amber -->
-          <div class="theme-option-card" data-theme-key="solar-amber">
-            <div class="theme-card-left">
-              <div class="theme-swatches-preview">
-                <span class="theme-swatch-dot primary" style="background: #ffb703;"></span>
-                <span class="theme-swatch-dot secondary" style="background: #fb8500;"></span>
-              </div>
-              <div class="theme-info-box">
-                <h4>SOLAR AMBER</h4>
-                <p>Deus Ex Cyber Gold • High-Voltage Solar & Flame</p>
-              </div>
-            </div>
-            <span class="theme-status-tag">SELECT</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tab Pane 2: 5 Selectable Dark Gaming Background Styles -->
-      <div class="hud-tab-pane" id="pane-backgrounds">
-        <div class="theme-cards-grid" id="bg-options-list">
-          <!-- 1. Cyber Grid (Default) -->
-          <div class="theme-option-card bg-option-card active" data-bg-key="cyber-grid">
-            <div class="theme-card-left">
-              <div class="bg-icon-badge">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <line x1="3" y1="3" x2="21" y2="3"></line>
-                  <line x1="3" y1="9" x2="21" y2="9"></line>
-                  <line x1="3" y1="15" x2="21" y2="15"></line>
-                  <line x1="3" y1="21" x2="21" y2="21"></line>
-                  <line x1="3" y1="3" x2="3" y2="21"></line>
-                  <line x1="9" y1="3" x2="9" y2="21"></line>
-                  <line x1="15" y1="3" x2="15" y2="21"></line>
-                  <line x1="21" y1="3" x2="21" y2="21"></line>
-                </svg>
-              </div>
-              <div class="theme-info-box">
-                <h4>CYBER GRID (DEFAULT)</h4>
-                <p>Sci-Fi Coordinate Matrix • Orthogonal Grid & Constellation Nodes</p>
-              </div>
-            </div>
-            <span class="theme-status-tag">ACTIVE</span>
-          </div>
-
-          <!-- 2. Deep Space Nebula -->
-          <div class="theme-option-card bg-option-card" data-bg-key="deep-space">
-            <div class="theme-card-left">
-              <div class="bg-icon-badge">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                </svg>
-              </div>
-              <div class="theme-info-box">
-                <h4>DEEP SPACE NEBULA</h4>
-                <p>Cosmic Starlight • Soft Radial Nebulae & Twinkling Cosmos Drift</p>
-              </div>
-            </div>
-            <span class="theme-status-tag">SELECT</span>
-          </div>
-
-          <!-- 3. Hex Shield Lattice -->
-          <div class="theme-option-card bg-option-card" data-bg-key="hex-shield">
-            <div class="theme-card-left">
-              <div class="bg-icon-badge">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                </svg>
-              </div>
-              <div class="theme-info-box">
-                <h4>HEX SHIELD LATTICE</h4>
-                <p>High-Tech Energy Barrier • Honeycomb Shield Matrix Array</p>
-              </div>
-            </div>
-            <span class="theme-status-tag">SELECT</span>
-          </div>
-
-          <!-- 4. Retro Synthwave Scanlines -->
-          <div class="theme-option-card bg-option-card" data-bg-key="synth-scanlines">
-            <div class="theme-card-left">
-              <div class="bg-icon-badge">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                  <line x1="8" y1="21" x2="16" y2="21"></line>
-                  <line x1="12" y1="17" x2="12" y2="21"></line>
-                  <line x1="6" y1="8" x2="18" y2="8"></line>
-                  <line x1="6" y1="12" x2="18" y2="12"></line>
-                </svg>
-              </div>
-              <div class="theme-info-box">
-                <h4>SYNTH SCANLINES</h4>
-                <p>Arcade CRT Terminal • Horizontal Scanlines & Rising Neon Embers</p>
-              </div>
-            </div>
-            <span class="theme-status-tag">SELECT</span>
-          </div>
-
-          <!-- 5. Carbon Matrix -->
-          <div class="theme-option-card bg-option-card" data-bg-key="carbon-matrix">
-            <div class="theme-card-left">
-              <div class="bg-icon-badge">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
-                  <polyline points="2 17 12 22 22 17"></polyline>
-                  <polyline points="2 12 12 17 22 12"></polyline>
-                </svg>
-              </div>
-              <div class="theme-info-box">
-                <h4>CARBON MATRIX</h4>
-                <p>Tactical Micro-Weave • Minimalist Carbon Fiber & Ambient Drift</p>
-              </div>
-            </div>
-            <span class="theme-status-tag">SELECT</span>
           </div>
         </div>
       </div>
@@ -1058,29 +1773,552 @@
   </div>
 
   <!-- ==========================================================================
-       FOOTER
+       ALL JAVASCRIPT LOGIC & PROJECTS DATA INLINE (ZERO EXTERNAL BREAKAGE)
        ========================================================================== -->
-  <footer class="footer">
-    <div class="container footer-content">
-      <div class="footer-copy">
-        &copy; 2026 <strong>Amal Thomas</strong>. Professional Unity Game Developer. Built with passion for <span>Unity 2D/3D</span> & <span>C#</span>.
-      </div>
+  <script>
+    /* Complete Structured Projects Dataset */
+    const ALL_PROJECTS = [
+      {
+        id: "cars-of-voice",
+        title: "Cars of Voice",
+        subtitle: "Voice-Controlled Arcade Racing â€¢ Microphone-Driven Physics",
+        category: "racing 3d",
+        genre: "Arcade Racing",
+        image: "assets/images/cars-of-voice.png",
+        fallbackIcon: "ðŸŽï¸",
+        tags: ["Unity", "3D", "Audio DSP", "Vehicle Physics", "C#"],
+        shortDesc: "The ultimate voice-controlled arcade racer where your voice is the accelerator and silence is your brake! Features real-time vocal soundwave visualizers and responsive vehicle physics.",
+        features: [
+          "Unique Voice-Control Engine: Zero touch drivingâ€”continuous microphone decibel analysis maps vocal energy directly to engine acceleration",
+          "Silence Brake & Drift System: Immediate vehicle deceleration and drift cornering triggered by vocal silence",
+          "Dynamic Boost Mechanics: Shouting triggers maximum velocity boosts to launch over ramps and clear perilous gaps",
+          "Customizable Sci-Fi HUD Themes: Cyber Neon, Retro Arcade, and Sci-Fi instrumentation visualizer"
+        ],
+        challenges: "Background environmental noise and variance across phone microphones caused false throttle triggers. Solved by developing dynamic noise-floor calibration with adaptive threshold smoothing.",
+        githubUrl: "https://github.com/amalthomaz88-sudo/cars-of-voice-unity"
+      },
+      {
+        id: "solitaire-collection",
+        title: "Solitaire Collection",
+        subtitle: "Classic Card Suite with Command Pattern Undo",
+        category: "puzzle 2d",
+        genre: "2D Card Suite",
+        image: "assets/images/hill-climb.jpg",
+        fallbackIcon: "ðŸƒ",
+        tags: ["Unity", "2D", "Command Pattern", "DOTween", "C#"],
+        shortDesc: "A polished Solitaire card collection featuring Klondike, Spider, and FreeCell with drag-and-drop physics, auto-complete solvers, and infinite undo/redo.",
+        features: [
+          "Multiple classic game modes (Klondike 1/3, Spider, FreeCell)",
+          "Fisher-Yates cryptographically-fair deck shuffling with solvable deal validation",
+          "Full Command Pattern architecture supporting limitless step-by-step undo and redo",
+          "Tactile card drag-and-drop physics and snap animations with DOTween"
+        ],
+        challenges: "Rapid consecutive card taps during animations caused state desynchronization. Solved via an input locking state machine queue.",
+        githubUrl: "https://github.com/amalthomaz88-sudo/solitaire-collection-unity"
+      },
+      {
+        id: "fruits-3d",
+        title: "Fruits 3D",
+        subtitle: "Kawaii Physics Slicing & Merge Action",
+        category: "puzzle 3d",
+        genre: "3D Physics Casual",
+        image: "assets/images/kawaii-fruits-3d.png",
+        fallbackIcon: "ðŸ‰",
+        tags: ["Unity", "3D", "Physics Slicing", "Particle FX", "C#"],
+        shortDesc: "A colorful, tactile 3D fruit puzzle adventure featuring mesh deformation slicing, collision merge cascades, and celebratory particle feedback.",
+        features: [
+          "Real-time mesh slicing mechanics producing accurate cut submeshes and uv texture mapping",
+          "Satisfying tactile juice with dynamic squish squash deformation and particle splashes",
+          "Dynamic combo scoring multiplier and floating holographic text counters",
+          "Optimized draw calls allowing hundreds of fruit debris pieces to interact smoothly at 60 FPS"
+        ],
+        challenges: "Dynamic mesh generation spikes caused occasional GC garbage collection stutters. Addressed with pre-allocated vertex arrays and an object pool.",
+        githubUrl: "https://github.com/amalthomaz88-sudo/fruits-3d-unity"
+      },
+      {
+        id: "battleship-2d",
+        title: "Battleship 2D",
+        subtitle: "Naval Strategy & Tactical Grid Combat",
+        category: "action 2d",
+        genre: "Turn-Based Strategy",
+        image: "assets/images/battleship.jpg",
+        fallbackIcon: "ðŸš¢",
+        tags: ["Unity", "2D", "Grid AI", "Heuristics", "C#"],
+        shortDesc: "Turn-based naval tactics game featuring intelligent grid AI opponents, fleet positioning phases, fog of war, and cinematic torpedo impacts.",
+        features: [
+          "Heuristic targeting AI with adaptive hunting algorithms (Hit-and-Seek pattern search)",
+          "Interactive fleet deployment system with collision safety verification",
+          "Atmospheric audio design with hydrophone pings, splash FX, and hit explosions",
+          "Multiple difficulty settings from rookie radar sweeps to master naval admirals"
+        ],
+        challenges: "Preventing AI from feeling unfairly prescient while remaining challenging. Implemented probability density heatmaps simulating human guesswork.",
+        githubUrl: "https://github.com/amalthomaz88-sudo/battleship-2d-unity"
+      },
+      {
+        id: "tower-defense",
+        title: "Tower Defense 3D",
+        subtitle: "Strategic Wave Defense & Turret Architecture",
+        category: "action 3d",
+        genre: "Strategy / Defense",
+        image: "assets/images/tower-defense.jpg",
+        fallbackIcon: "ðŸ°",
+        tags: ["Unity", "3D", "A* Pathfinding", "ScriptableObjects", "C#"],
+        shortDesc: "Feature-rich tactical defense game with dynamic pathfinding, elemental turret upgrade branches, creeping enemy waves, and particle beam cannons.",
+        features: [
+          "Dynamic A* path recalculation reacting instantaneously to player maze placements",
+          "ScriptableObject data architecture for modular turret damage, range, and fire rates",
+          "Diverse enemy types including flying aerial units, armored bosses, and cloaked scouts",
+          "Custom laser shader beams and cascading explosion particle effects"
+        ],
+        challenges: "Managing hundreds of simultaneous active projectiles and enemies without frame drops. Solved by object pooling all bullets, enemies, and particle systems.",
+        githubUrl: "https://github.com/amalthomaz88-sudo/tower-defense-unity"
+      },
+      {
+        id: "liquid-sort",
+        title: "Liquid Sort",
+        subtitle: "Color Fluid Sorting & Logic Puzzle",
+        category: "puzzle 2d",
+        genre: "Casual Logic Puzzle",
+        image: "assets/images/liquid-sort.jpg",
+        fallbackIcon: "ðŸ§ª",
+        tags: ["Unity", "2D", "Fluid Shaders", "Stack Algorithm", "C#"],
+        shortDesc: "Hypnotic, satisfying color liquid puzzle featuring parabolic pour physics, connected component stack evaluation, and procedural level generators.",
+        features: [
+          "Custom liquid shader rendering fluid tilt angles, meniscus curves, and pour streams",
+          "Stack-based state evaluation verifying pour legality and win conditions in O(1) time",
+          "Procedural level puzzle generator creating thousands of guaranteed-solvable stages",
+          "Undo state history allowing players to retract mistakes with fluid rewind tweens"
+        ],
+        challenges: "Accurately matching shader fill animations to logical bottle stack transfers. Synchronized shader parameters directly with DOTween sequence callbacks.",
+        githubUrl: "https://github.com/amalthomaz88-sudo/liquid-sort-puzzle-unity"
+      },
+      {
+        id: "fps-combat",
+        title: "First-Person Shooter",
+        subtitle: "Tactical Gameplay & Ballistic Shooting Engine",
+        category: "action 3d",
+        genre: "3D Action FPS",
+        image: "assets/images/fps.jpg",
+        fallbackIcon: "ðŸŽ¯",
+        tags: ["Unity", "3D", "Weapon Mechanics", "Enemy AI", "C#"],
+        shortDesc: "Fast-paced tactical shooter highlighting weapon handling, spring recoil interpolation, projectile ballistics, and tactical cover-seeking AI.",
+        features: [
+          "Modular weapon controller supporting raycast hitscan and ballistic gravity projectiles",
+          "Smooth procedural weapon sway, sprint bobbing, and spring recoil kickback",
+          "Behavior Tree enemy AI utilizing sensory detection (sight cones & footstep hearing)",
+          "Dynamic impact particle effects reacting to material types (wood, concrete, metal)"
+        ],
+        challenges: "High-speed bullets passing through thin walls without registering hits. Implemented continuous collision detection and raycast trajectory sweeping.",
+        githubUrl: "https://github.com/amalthomaz88-sudo/fps-tactical-unity"
+      },
+      {
+        id: "flight-simulator",
+        title: "Flight Simulator",
+        subtitle: "Aerodynamic Lift & Cockpit Avionics",
+        category: "racing 3d",
+        genre: "3D Flight Simulation",
+        image: "assets/images/flight-sim.jpg",
+        fallbackIcon: "âœˆï¸",
+        tags: ["Unity", "3D", "Aerodynamics", "Avionics UI", "C#"],
+        shortDesc: "Realistic airplane physics simulator calculating live aerodynamic lift, drag coefficients, stall angles, and responsive joystick controls.",
+        features: [
+          "Physics-accurate wing aerodynamic formulas computing lift, drag, and angle of attack",
+          "Functional cockpit flight instruments: Artificial Horizon, Altimeter, Airspeed, Compass",
+          "Dynamic wind gusts, turbulence, and stall warning audio sirens",
+          "Expansive terrain with runway approaches, waypoint checkpoints, and landing gear physics"
+        ],
+        challenges: "Preventing supersonic rotation instability at extreme pitch angles. Utilized quaternion rotation clamping and angular drag damping.",
+        githubUrl: "https://github.com/amalthomaz88-sudo/flight-simulator-unity"
+      },
+      {
+        id: "rocket-launcher",
+        title: "Rocket Launcher Combat",
+        subtitle: "Ballistic Trajectories & Destructive Physics",
+        category: "action 3d",
+        genre: "Combat / Destruction",
+        image: "assets/images/rocket-combat.jpg",
+        fallbackIcon: "ðŸš€",
+        tags: ["Unity", "3D", "Ballistics", "Explosion Physics", "C#"],
+        shortDesc: "Explosive projectile combat simulator with parabolic gravity arcs, blast radius damage calculations, smoke trails, and destructible props.",
+        features: [
+          "Realistic physics rockets influenced by gravity, launch impulse, and rocket motor thrust",
+          "Volumetric smoke trails and particle flame exhaust using Unity Particle Systems",
+          "Physics impulse shockwaves launching nearby objects based on inverse-square falloff",
+          "Predictive trajectory arc HUD renderer calculating impact points ahead of time"
+        ],
+        challenges: "Simulating realistic blast physics without crashing the physics thread. Optimized radius overlap queries using non-allocating Physics.OverlapSphereNonAlloc.",
+        githubUrl: "https://github.com/amalthomaz88-sudo/rocket-launcher-combat-unity"
+      }
+    ];
 
-      <div class="footer-nav">
-        <a href="#home">Home</a>
-        <a href="#projects">Projects</a>
-        <a href="#resume">Resume</a>
-        <a href="#contact">Contact</a>
-      </div>
-    </div>
-  </footer>
+    /* ==========================================================================
+       WEB AUDIO SYNTHESIZER (ZERO EXTERNAL MP3 DEPENDENCIES)
+       ========================================================================== */
+    let audioContext = null;
+    let sfxEnabled = true;
 
-  <!-- Scripts -->
-  <script src="js/lenis.min.js"></script>
-  <script src="js/audio.js"></script>
-  <script src="js/particles.js"></script>
-  <script src="js/data/projects.js"></script>
-  <script src="js/data/resume.js"></script>
-  <script src="js/main.js"></script>
+    function getAudioContext() {
+      if (!audioContext) {
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioContext.state === 'suspended') {
+        audioContext.resume();
+      }
+      return audioContext;
+    }
+
+    function playSound(type) {
+      if (!sfxEnabled) return;
+      try {
+        const ctx = getAudioContext();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+
+        const now = ctx.currentTime;
+
+        if (type === 'click') {
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(800, now);
+          osc.frequency.exponentialRampToValueAtTime(300, now + 0.05);
+          gain.gain.setValueAtTime(0.08, now);
+          gain.gain.linearRampToValueAtTime(0.001, now + 0.05);
+          osc.start(now);
+          osc.stop(now + 0.05);
+        } else if (type === 'hover') {
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(450, now);
+          gain.gain.setValueAtTime(0.02, now);
+          gain.gain.linearRampToValueAtTime(0.001, now + 0.03);
+          osc.start(now);
+          osc.stop(now + 0.03);
+        } else if (type === 'modal') {
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(320, now);
+          osc.frequency.exponentialRampToValueAtTime(640, now + 0.12);
+          gain.gain.setValueAtTime(0.09, now);
+          gain.gain.linearRampToValueAtTime(0.001, now + 0.12);
+          osc.start(now);
+          osc.stop(now + 0.12);
+        } else if (type === 'theme') {
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(520, now);
+          osc.frequency.exponentialRampToValueAtTime(1040, now + 0.16);
+          gain.gain.setValueAtTime(0.1, now);
+          gain.gain.linearRampToValueAtTime(0.001, now + 0.16);
+          osc.start(now);
+          osc.stop(now + 0.16);
+        }
+      } catch (e) {
+        // AudioContext silent fallback
+      }
+    }
+
+    /* ==========================================================================
+       RENDER PROJECTS GRID
+       ========================================================================== */
+    function renderProjects(filter = 'all') {
+      const grid = document.getElementById('projects-grid');
+      grid.innerHTML = '';
+
+      const filtered = ALL_PROJECTS.filter(p => {
+        if (filter === 'all') return true;
+        return p.category.includes(filter);
+      });
+
+      filtered.forEach(p => {
+        const card = document.createElement('div');
+        card.className = 'project-card';
+        card.innerHTML = `
+          <div class="project-media">
+            <img src="${p.image}" alt="${p.title}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="project-fallback-art">${p.fallbackIcon}</div>
+            <div class="project-genre-badge">${p.genre}</div>
+          </div>
+          <div class="project-body">
+            <h3 class="project-title">${p.title}</h3>
+            <div class="project-subtitle">${p.subtitle}</div>
+            <p class="project-desc">${p.shortDesc}</p>
+            <div class="project-tags">
+              ${p.tags.map(t => `<span class="project-tag">${t}</span>`).join('')}
+            </div>
+            <div class="project-footer">
+              <button class="btn-details" onclick="openProjectModal('${p.id}')">
+                <span>View Details</span>
+                <span>âž”</span>
+              </button>
+              <div class="project-links">
+                <a href="${p.githubUrl}" target="_blank" rel="noopener noreferrer" class="icon-link" title="GitHub Code">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    /* ==========================================================================
+       PROJECT MODAL ENGINE
+       ========================================================================== */
+    function openProjectModal(id) {
+      const p = ALL_PROJECTS.find(x => x.id === id);
+      if (!p) return;
+      playSound('modal');
+
+      const modalBody = document.getElementById('modal-body-content');
+      modalBody.innerHTML = `
+        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
+          <span style="font-size: 2rem;">${p.fallbackIcon}</span>
+          <div>
+            <h2 class="modal-title">${p.title}</h2>
+            <div class="modal-subtitle">${p.subtitle}</div>
+          </div>
+        </div>
+
+        <div style="background: rgba(0, 240, 255, 0.05); border: 1px solid var(--border-medium); border-radius: var(--radius-sm); padding: 1rem 1.25rem; margin: 1.25rem 0;">
+          <strong>Overview:</strong> ${p.shortDesc}
+        </div>
+
+        <h3 class="modal-section-title">Core Gameplay & Technical Features</h3>
+        <ul class="modal-features-list">
+          ${p.features.map(f => `<li>${f}</li>`).join('')}
+        </ul>
+
+        <h3 class="modal-section-title">Engineering Challenge & Solution</h3>
+        <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6;">
+          ${p.challenges}
+        </p>
+
+        <h3 class="modal-section-title">Technologies</h3>
+        <div class="project-tags" style="margin-top: 0.5rem;">
+          ${p.tags.map(t => `<span class="project-tag" style="font-size: 0.85rem; padding: 0.35rem 0.75rem;">${t}</span>`).join('')}
+        </div>
+
+        <div style="margin-top: 2rem; display: flex; gap: 1rem;">
+          <a href="${p.githubUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="flex: 1;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+            </svg>
+            View Repository on GitHub
+          </a>
+          <button class="btn btn-outline" onclick="closeAllModals()">Close</button>
+        </div>
+      `;
+
+      document.getElementById('project-modal').classList.add('active');
+    }
+
+    function closeAllModals() {
+      playSound('click');
+      document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('active'));
+    }
+
+    /* ==========================================================================
+       CANVAS BACKGROUND (HIGH-TECH MATRIX / CONSTELLATIONS)
+       ========================================================================== */
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    const PARTICLE_COUNT = 65;
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    class Particle {
+      constructor() {
+        this.reset();
+      }
+      reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.vx = (Math.random() - 0.5) * 0.45;
+        this.vy = (Math.random() - 0.5) * 0.45;
+        this.radius = Math.random() * 1.8 + 0.8;
+      }
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(0, 240, 255, 0.45)';
+        ctx.fill();
+      }
+    }
+
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+      particles.push(new Particle());
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      for (let i = 0; i < particles.length; i++) {
+        particles[i].update();
+        particles[i].draw();
+
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < 120) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = `rgba(0, 240, 255, ${0.18 * (1 - dist / 120)})`;
+            ctx.lineWidth = 0.8;
+            ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
+
+    /* ==========================================================================
+       EVENT LISTENERS & HUD INITIALIZATION
+       ========================================================================== */
+    document.addEventListener('DOMContentLoaded', () => {
+      renderProjects('all');
+
+      // Filter tabs
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          playSound('click');
+          filterBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          renderProjects(btn.getAttribute('data-filter'));
+        });
+      });
+
+      // Navbar scroll effect & active link update
+      const navbar = document.getElementById('navbar');
+      const sections = document.querySelectorAll('section');
+      const navLinks = document.querySelectorAll('.nav-link');
+
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 40) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
+
+        let current = '';
+        sections.forEach(s => {
+          const top = s.offsetTop - 120;
+          if (window.scrollY >= top) {
+            current = s.getAttribute('id');
+          }
+        });
+
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === `#${current}`) {
+            link.classList.add('active');
+          }
+        });
+      });
+
+      // SFX Audio Button
+      const audioBtn = document.getElementById('audio-toggle-btn');
+      audioBtn.addEventListener('click', () => {
+        sfxEnabled = !sfxEnabled;
+        if (sfxEnabled) {
+          document.getElementById('audio-icon').textContent = 'ðŸ”Š';
+          document.getElementById('audio-status').textContent = 'SFX: ON';
+          playSound('click');
+        } else {
+          document.getElementById('audio-icon').textContent = 'ðŸ”‡';
+          document.getElementById('audio-status').textContent = 'SFX: OFF';
+        }
+      });
+
+      // Theme Studio Modal Trigger
+      const themeBtn = document.getElementById('theme-btn');
+      themeBtn.addEventListener('click', () => {
+        playSound('modal');
+        document.getElementById('theme-modal').classList.add('active');
+      });
+
+      // Theme Switcher Selection
+      const themeOptions = document.querySelectorAll('.theme-card-option');
+      themeOptions.forEach(opt => {
+        opt.addEventListener('click', () => {
+          const theme = opt.getAttribute('data-set-theme');
+          document.documentElement.setAttribute('data-theme', theme);
+          localStorage.setItem('portfolio-theme', theme);
+          playSound('theme');
+
+          themeOptions.forEach(o => o.classList.remove('active'));
+          opt.classList.add('active');
+          setTimeout(() => {
+            closeAllModals();
+          }, 300);
+        });
+      });
+
+      // Restore saved theme
+      const savedTheme = localStorage.getItem('portfolio-theme');
+      if (savedTheme) {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        themeOptions.forEach(o => {
+          if (o.getAttribute('data-set-theme') === savedTheme) o.classList.add('active');
+          else o.classList.remove('active');
+        });
+      }
+
+      // Close modal events
+      document.getElementById('modal-close-btn').addEventListener('click', closeAllModals);
+      document.getElementById('theme-modal-close-btn').addEventListener('click', closeAllModals);
+      document.querySelectorAll('.modal-overlay').forEach(overlay => {
+        overlay.addEventListener('click', (e) => {
+          if (e.target === overlay) closeAllModals();
+        });
+      });
+
+      // Button hover SFX
+      document.querySelectorAll('button, .btn, .nav-link, .contact-channel, .icon-link').forEach(el => {
+        el.addEventListener('mouseenter', () => playSound('hover'));
+      });
+    });
+
+    /* Contact Form Handler */
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      playSound('click');
+      const name = document.getElementById('form-name').value;
+      const feedback = document.getElementById('form-feedback');
+      const submitBtn = document.getElementById('form-submit-btn');
+
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = `<span>Sending...</span>`;
+
+      setTimeout(() => {
+        feedback.style.display = 'block';
+        feedback.style.background = 'rgba(16, 185, 129, 0.15)';
+        feedback.style.border = '1px solid var(--neon-emerald)';
+        feedback.style.color = '#10b981';
+        feedback.innerHTML = `ðŸš€ Thank you, <strong>${name}</strong>! Your message has been prepared. I will respond to your email shortly!`;
+
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = `<span>Sent Successfully!</span>`;
+        document.getElementById('contact-form').reset();
+      }, 700);
+    }
+  </script>
 </body>
 </html>
