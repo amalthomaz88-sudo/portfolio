@@ -167,6 +167,34 @@ class GameAudioSystem {
       });
     } catch (e) {}
   }
+
+  // Joyful robotic chirp/greeting sound
+  playRobotChirp() {
+    if (!this.enabled || !this.ctx || this.ctx.state !== 'running') return;
+    try {
+      const notes = [659.25, 880, 1174.66]; // E5, A5, D6 cheerful arpeggio
+      const now = this.ctx.currentTime;
+
+      notes.forEach((freq, i) => {
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        const startTime = now + (i * 0.05);
+
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, startTime);
+        osc.frequency.exponentialRampToValueAtTime(freq * 1.15, startTime + 0.06);
+
+        gain.gain.setValueAtTime(0.06, startTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, startTime + 0.09);
+
+        osc.connect(gain);
+        gain.connect(this.masterGain);
+
+        osc.start(startTime);
+        osc.stop(startTime + 0.1);
+      });
+    } catch (e) {}
+  }
 }
 
 // Global audio instance

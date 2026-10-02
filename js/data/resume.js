@@ -12,7 +12,7 @@ const RESUME_DATA = {
     phone: "+91 8848011784",
     location: "Ernakulam, Kerala, India 683574",
     website: "https://amalthomas.dev",
-    github: "https://github.com/amalthomas",
+    github: "https://github.com/amalthomaz88-sudo",
     linkedin: "https://linkedin.com/in/amal-thomas",
     youtube: "https://youtube.com/@amalthomasdev",
     instagram: "https://instagram.com/amal_thomas_dev",
@@ -42,7 +42,7 @@ const RESUME_DATA = {
         "Leveraged ScriptableObjects for scalable, designer-friendly game data configurations.",
         "Implemented smooth, responsive UI animations and tactile feedback systems using DOTween."
       ],
-      projects: ["Battleships 2D Multiplayer", "Tower Defense", "Liquid Sort", "Battleship 2D"]
+      projects: ["Battleship 2D", "Tower Defense", "Liquid Sort"]
     },
     {
       company: "Infocom Software Pvt. Ltd",
@@ -58,7 +58,7 @@ const RESUME_DATA = {
         "Integrated REST APIs for backend player progression, remote configurations, and leaderboards.",
         "Conducted sprint planning, code reviews, and mentored junior Unity developers on architectural consistency."
       ],
-      projects: ["First-Person Shooter (FPS)", "Flight Simulator", "Rocket Launcher", "Solitaire Collection"]
+      projects: ["Cars of Voice", "Solitaire Collection", "Fruits 3D", "First-Person Shooter(FPS)", "Flight Simulator", "Rocket Launcher"]
     }
   ],
 
@@ -77,7 +77,7 @@ const RESUME_DATA = {
       { name: "Unity (2D & 3D)", level: 96, experience: "2+ Years", badge: "Expert" },
       { name: "C# Programming", level: 95, experience: "2+ Years", badge: "Master" },
       { name: "Photon / Mirror / Netcode", level: 90, experience: "Multiplayer", badge: "Advanced" },
-      { name: "Unreal Engine & C++", level: 82, experience: "Systems", badge: "Proficient" }
+      { name: "Unity Physics & 3D Math", level: 93, experience: "2+ Years", badge: "Expert" }
     ],
     programming: [
       { name: "C# Game Programming", level: 96, experience: "Core", badge: "Master" },
@@ -102,7 +102,7 @@ const RESUME_DATA = {
       { name: "Visual Studio / VS Code", level: 95, badge: "Master" },
       { name: "DOTween Pro", level: 94, badge: "Expert" },
       { name: "Agile / Scrum & Sprint Planning", level: 90, badge: "Advanced" },
-      { name: "Blender & Photoshop", level: 78, badge: "Intermediate" }
+      { name: "Postman & REST API Tools", level: 88, badge: "Advanced" }
     ]
   },
 
