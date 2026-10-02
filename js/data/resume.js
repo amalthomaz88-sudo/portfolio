@@ -12,7 +12,7 @@ const RESUME_DATA = {
     phone: "+91 8848011784",
     location: "Ernakulam, Kerala, India 683574",
     website: "https://amalthomas.dev",
-    github: "https://github.com/amalthomaz88-sudo",
+    github: "https://github.com/amalthomas",
     linkedin: "https://linkedin.com/in/amal-thomas",
     youtube: "https://youtube.com/@amalthomasdev",
     instagram: "https://instagram.com/amal_thomas_dev",
